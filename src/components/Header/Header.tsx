@@ -7,17 +7,17 @@ export interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = () => {
   return (
-    <header>
+    <header className="header">
       logo
-      <nav>
-        <ul>
-          <li>
-            <NavLink exact={true} activeClassName="active" to="/">
+      <nav className="navigation">
+        <ul className="list">
+          <li className="list__item">
+            <NavLink className="list__link" exact={true} activeClassName="active" to="/">
               Home
             </NavLink>
           </li>
           <li>
-            <NavLink to="/favorites">
+            <NavLink className="list__link" to="/favorites">
               Favorites
             </NavLink>
           </li>

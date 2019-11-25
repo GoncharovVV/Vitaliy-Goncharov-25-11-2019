@@ -100,8 +100,8 @@ body {
 .cards {
   @include flex($wrap: wrap, $align: flex-start);
 }
-.item_quoter {
-  width: 25%;
+.card__item {
+  width: 20%;
   @include max-screen(990px) {
     width: 50%;
   }
@@ -109,6 +109,7 @@ body {
     width: 100%;
   }
 }
-.textarea {
-  resize: none;
+
+.active {
+  pointer-events: none;
 }
