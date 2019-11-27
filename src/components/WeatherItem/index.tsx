@@ -1,2 +1,2 @@
-import moduleName from './WeatherItem';
+import WeatherItem from './WeatherItem';
 export default WeatherItem;
