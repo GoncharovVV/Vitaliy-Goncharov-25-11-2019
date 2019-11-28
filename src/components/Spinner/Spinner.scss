@@ -1,0 +1,33 @@
+@import '../../scss/variables';
+@keyframes ldio-8f7rrj255lg {
+  0% { transform: rotate(0deg) }
+  50% { transform: rotate(180deg) }
+  100% { transform: rotate(360deg) }
+}
+.ldio-8f7rrj255lg div {
+  position: absolute;
+  animation: ldio-8f7rrj255lg 0.8200000000000001s linear infinite;
+  width: 80px;
+  height: 80px;
+  top: 10px;
+  left: 10px;
+  border-radius: 50%;
+  box-shadow: 0 2px 0 0 $blue;
+  transform-origin: 40px 41px;
+}
+.loadingio-spinner-eclipse-hn956r9y5te {
+  width: 78px;
+  height: 78px;
+  display: inline-block;
+  overflow: hidden;
+  background: $white;
+}
+.ldio-8f7rrj255lg {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: translateZ(0) scale(0.78);
+  backface-visibility: hidden;
+  transform-origin: 0 0;
+}
+.ldio-8f7rrj255lg div { box-sizing: content-box; }

@@ -1,0 +1,20 @@
+@import '../../scss/variables', '../../scss/mixin';
+.error__holder {
+  @include flex($just: center, $align: center, $align-c: center, $wrap: wrap);
+  min-height: 100vh;
+  font-size: 3rem;
+  color: $grey400;
+  strong {
+    text-align: center;
+    width: 100%;
+    padding: 3rem 0 0;
+  }
+}
+.error__icon {
+  width: 100%;
+  text-align: center;
+  .svg-icon {
+    display: inline-block;
+    font-size: 10rem;
+  }
+}

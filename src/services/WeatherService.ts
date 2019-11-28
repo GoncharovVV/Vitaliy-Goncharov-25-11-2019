@@ -3,11 +3,14 @@ import {
   ICity
 } from '../utils/types';
 
+import {Cities} from '../mockData';
+
 export default class WeatherService {
   _urlApiBase = 'https://dataservice.accuweather.com/';
   _apiKey = 't2US9Eg1bQs0uJkVtLaIPA6uQCWjGGWM';
   getResource = async (url: string) => {
     const res = await fetch(`${this._urlApiBase}${url}`);
+    console.log(res);
     if (!res.ok) {
       throw new Error(`Could not get data, received ${res.status}`);
     }
@@ -20,8 +23,9 @@ export default class WeatherService {
   };
 
   getCities = async (query: string): Promise<Array<ICity>> => {
-    const res = await this.getResource(`locations/v1/cities/autocomplete?apikey=${this._apiKey}&q=${query}`);
-    return this._transformCities(res);
+    // const res = await this.getResource(`locations/v1/cities/autocomplete?apikey=${this._apiKey}&q=${query}`);
+    // return this._transformCities(res);
+    return Cities; // MOCKDATA -> remove
   };
 
   getWeatherFevDays = async (cityKey: number) => {
@@ -34,9 +38,11 @@ export default class WeatherService {
   };
 
   _transformCities = (citiesArr: Array<ICitiesResponce>): Array<ICity> => {
-    return citiesArr.map(({ Key, LocalizedName }) => ({
-      key: Key,
-      localizedName: LocalizedName
+    return citiesArr.map(({ Key, LocalizedName, Country, AdministrativeArea }) => ({
+      id: Key,
+      localizedName: LocalizedName,
+      country: Country.LocalizedName,
+      administrative: AdministrativeArea.LocalizedName
     }));
   };
 }

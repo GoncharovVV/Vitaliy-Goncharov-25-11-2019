@@ -7,9 +7,14 @@ export interface ICitiesResponce {
   Country: { ID: string, LocalizedName: string },
   AdministrativeArea: { ID: string, LocalizedName: string }
 };
+export type WeatherServiceContextProps = {
+  
+};
 export interface ICity {
-  key: string,
-  localizedName: string
+  id: string,
+  localizedName: string,
+  country?: string,
+  administrative?: string
 };
 export interface ITemperatureValue {
   value: number,

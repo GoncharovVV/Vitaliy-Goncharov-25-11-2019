@@ -62,6 +62,38 @@ const autocomplite = [
     AdministrativeArea: { ID: '68', LocalizedName: "Khmel'nyts'kyy" }
   }
 ];
+const Cities = [
+  {
+    id: '323903',
+    localizedName: 'Kharkiv',
+    country: 'Ukraine',
+    administrative: 'test'
+  },
+  {
+    id: '1215508',
+    localizedName: 'Kharkivske',
+    country: 'Rus',
+    administrative: 'test'
+  },
+  {
+    id: '1215506',
+    localizedName: 'Kharkivtsi',
+    country: 'Ne rus',
+    administrative: 'test'
+  },
+  {
+    id: '1215510',
+    localizedName: 'Kharkivka',
+    country: 'NDND',
+    administrative: 'test'
+  },
+  {
+    id: '1215507',
+    localizedName: 'Kharkivtsi',
+    country: 'Test',
+    administrative: 'test'
+  }
+];
 const weatherFewDays = {
   Headline: {
     EffectiveDate: '2019-11-29T07:00:00+02:00',
@@ -288,5 +320,7 @@ export {
   autocomplite,
   weatherShort,
   weatherFewDays,
-  favouritesList
+  favouritesList,
+  cels,
+  Cities
 }

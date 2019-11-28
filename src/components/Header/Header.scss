@@ -2,6 +2,7 @@
 .header {
   @include flex($wrap: wrap, $just: space-between, $align: center);
   padding: 10px 20px;
+  margin-bottom: 4rem;
 }
 .list {
   @include flex($wrap: wrap, $align: center);
