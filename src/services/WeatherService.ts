@@ -3,11 +3,12 @@ import {
   ICity
 } from '../utils/types';
 
-import {Cities} from '../mockData';
+import { Cities } from '../dummyData';
 
 export default class WeatherService {
   _urlApiBase = 'https://dataservice.accuweather.com/';
   _apiKey = 't2US9Eg1bQs0uJkVtLaIPA6uQCWjGGWM';
+
   getResource = async (url: string) => {
     const res = await fetch(`${this._urlApiBase}${url}`);
     console.log(res);
