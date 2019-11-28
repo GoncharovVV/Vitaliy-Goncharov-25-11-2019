@@ -19,12 +19,18 @@ const Search: React.FC<SearchProps> = () => {
   const multiple = React.useState<boolean>(false);
   const allowNew = React.useState<boolean>(false);
   return (
+
       <AsyncTypeahead
         id="typehad-id"
         isLoading={isLoading}
         allowNew={allowNew[0]}
         multiple={multiple[0]}
         placeholder="Search for a Github user..."
+        onChange={(selected: Array<ICity>) => {
+          if (selected.length>0) {
+            console.log(selected[0].id);
+          }
+        }}
         onSearch={(query: string) => {
           setisLoading(true);
           getCities(query).then(res => {
