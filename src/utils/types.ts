@@ -1,12 +1,4 @@
-export interface ICitiesResponce {
-  Version: number,
-  Key: string,
-  Type: string,
-  Rank: number,
-  LocalizedName: string,
-  Country: { ID: string, LocalizedName: string },
-  AdministrativeArea: { ID: string, LocalizedName: string }
-};
+
 export type WeatherServiceContextProps = {
 
 };
@@ -25,7 +17,7 @@ export interface IWeather extends ITemperature {
   id: string,
   date?: string,
   type: string,
-  icon: number, 
+  icon: number,
 };
 
 export interface IFavourite extends ICity, IWeather {};

@@ -79,7 +79,7 @@ body {
   min-height: 100vh;
 }
 .container {
-  max-width: 1140px;
+  max-width: 1360px;
   padding: 0 15px;
   margin: 0 auto;
   width: 100%;
@@ -128,7 +128,7 @@ body {
   display: inline-block;
   max-width: 75px;
   max-height: 45px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .active {
@@ -147,8 +147,10 @@ body {
 .card-item__date {
   text-align: left;
   margin-bottom: 2rem;
+  color: $grey;
   font-size: $fosSm;
 }
 .card-item__temp {
   font-size: $fosLg;
+  font-weight: 600;
 }
