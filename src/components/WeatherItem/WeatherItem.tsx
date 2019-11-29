@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import WithWeatherService from '../HocHelpers';
 import { IWeather } from '../../utils/types';
 import { formatDate } from '../../utils/helper';
@@ -6,7 +6,7 @@ export interface WeatherItemProps extends IWeather{
   getWeatherIcon?: any
 }
 
-const WeatherItem: React.SFC<WeatherItemProps> = ({getWeatherIcon, date, temperatureImp, temperatureMetr, type, icon }) => {
+const WeatherItem: React.FC<WeatherItemProps> = ({getWeatherIcon, date, temperatureImp, temperatureMetr, type, icon }) => {
   return (
     <li className="card-item">
       <div className="card-item__content">

@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 import './Favorites.scss';
 export interface FavoritesProps {
 
 }
 
-const Favorites: React.SFC<FavoritesProps> = () => {
+const Favorites: React.FC<FavoritesProps> = () => {
   return (
     <section>
       Favorites

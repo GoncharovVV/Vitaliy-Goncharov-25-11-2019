@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 import { WeatherServiceConsumer } from '../WeatherServiceContext';
 
 const WithWeatherService = (Wrapped:any, mapMethodsToProps: any) => {
   return (props:any) => {
-    return ( 
+    return (
       <WeatherServiceConsumer>
         {
           (weatherService:any) => {

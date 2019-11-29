@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { AsyncTypeahead } from 'react-bootstrap-typeahead';
 import { connect } from 'react-redux';
 import { updateCity } from '../../actions/actions';
@@ -12,10 +12,12 @@ export interface SearchProps {
 }
 
 const Search: React.FC<SearchProps> = ({ getCities, currentCity, updateCity }) => {
+
   const [isLoading, setisLoading] = React.useState<boolean>(false);
   const [options, setOptions] = React.useState<Array<ICity>>([currentCity]);
   const multiple = React.useState<boolean>(false);
   const allowNew = React.useState<boolean>(false);
+
   const onChange = (selected: Array<ICity>) => {
     if (selected.length > 0) {
       updateCity(selected[0]);
@@ -29,8 +31,9 @@ const Search: React.FC<SearchProps> = ({ getCities, currentCity, updateCity }) =
       setOptions(() => {
         return res;
       });
-    }); 
+    });
   };
+
   const getLabelKey = (option: ICity) =>
     `${option.localizedName} (${option.country} / ${option.administrative})`;
 
