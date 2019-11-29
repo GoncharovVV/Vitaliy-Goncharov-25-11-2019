@@ -27,10 +27,6 @@ html {
     font-size: 35.5%;
   }
 }
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
 :-moz-placeholder {
   color: #180f29;
   transition: color 0.3s;
@@ -69,7 +65,7 @@ code {
 }
 body {
   font-family: $font-primary;
-  font-size: 16px;
+  font-size: $fos;
   line-height: 1.2;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
@@ -100,14 +96,39 @@ body {
 .cards {
   @include flex($wrap: wrap, $align: flex-start);
 }
-.card__item {
+.card-item {
   width: 20%;
+  text-align: center;
+  padding: 5px 10px;
+  margin-bottom: 15px;
   @include max-screen(990px) {
     width: 50%;
   }
   @include max-screen(440px) {
     width: 100%;
   }
+  @include min-screen(1024px) {
+    &:hover {
+      .card-item__content {
+        box-shadow: 2px 3px 11px 0px rgba(0, 0, 0, 0.55);
+      }
+    }
+  }
+}
+.card-item__content {
+  box-shadow: 2px 3px 7px 0px rgba(0, 0, 0, 0.45);
+  border-radius: 5px;
+  border: $border-grey1;
+  padding: 10px;
+  transform: translateZ(0);
+  transition: box-shadow .3s;
+
+}
+.card-item__image {
+  display: inline-block;
+  max-width: 75px;
+  max-height: 45px;
+  margin-bottom: 10px;
 }
 
 .active {
@@ -118,4 +139,16 @@ body {
 	height: 1em;
 	display: block;
 	fill: currentColor;
+}
+.card-item__title {
+  color: $grey;
+  margin-bottom: 3rem;
+}
+.card-item__date {
+  text-align: left;
+  margin-bottom: 2rem;
+  font-size: $fosSm;
+}
+.card-item__temp {
+  font-size: $fosLg;
 }

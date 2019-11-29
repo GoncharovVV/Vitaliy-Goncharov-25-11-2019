@@ -16,21 +16,16 @@ export interface ICity {
   country?: string,
   administrative?: string
 };
-export interface ITemperatureValue {
-  value: number,
-  unit: string
-};
+
 export interface ITemperature {
-  temperature?: {
-    metric?: ITemperatureValue,
-    imperial?: ITemperatureValue
-  }
+  temperatureMetr: string,
+  temperatureImp: string,
 }
 export interface IWeather extends ITemperature {
   id: string,
   date?: string,
   type: string,
-  icon: number,
+  icon: number, 
 };
 
 export interface IFavourite extends ICity, IWeather {};

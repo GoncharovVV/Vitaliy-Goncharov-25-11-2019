@@ -29,7 +29,7 @@ const Search: React.FC<SearchProps> = ({ getCities, currentCity, updateCity }) =
       setOptions(() => {
         return res;
       });
-    });
+    }); 
   };
   const getLabelKey = (option: ICity) =>
     `${option.localizedName} (${option.country} / ${option.administrative})`;

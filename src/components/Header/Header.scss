@@ -16,6 +16,7 @@
   padding: 8px 10px;
   transition: color .3s;
   position: relative;
+  font-size: $fosMd;
   &:before {
     content: '';
     display: block;
