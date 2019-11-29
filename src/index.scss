@@ -104,6 +104,10 @@ body {
   @include max-screen(990px) {
     width: 50%;
   }
+  @include max-screen(640px) {
+    padding: 5px;
+    margin-bottom: 5px;
+  }
   @include max-screen(440px) {
     width: 100%;
   }
