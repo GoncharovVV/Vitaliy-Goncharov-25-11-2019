@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 export interface CardListProps {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 const CardList: React.FC<CardListProps> = ({children}) => {
