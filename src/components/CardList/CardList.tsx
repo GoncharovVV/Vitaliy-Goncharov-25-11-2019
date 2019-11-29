@@ -3,10 +3,10 @@ export interface CardListProps {
 
 }
 
-const CardList: React.FC<CardListProps> = () => {
+const CardList: React.FC<CardListProps> = (props) => { 
   return (
-    <ul>
-      <li>card list</li>
+    <ul className="cards">
+      {props.children}
     </ul>
   );
 }

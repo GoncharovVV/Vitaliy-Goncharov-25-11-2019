@@ -94,7 +94,7 @@ const Cities = [
     administrative: 'test'
   }
 ];
-const weatherFewDays = {
+const weatherFewDaysResp = {
   Headline: {
     EffectiveDate: '2019-11-29T07:00:00+02:00',
     EffectiveEpochDate: 1575003600,
@@ -203,6 +203,53 @@ const weatherFewDays = {
     }
   ]
 };
+const weatherFewDays = [
+  {
+    id: 'lw1',
+    date: '2019-11-27T07:00:00+02:00',
+    temperature: {
+      imperial: { value: 32.0, unit: 'F'},
+    },
+    type:'Showers',
+    icon: 12
+  },
+  {
+    id: 'lw2',
+    date: '2019-11-28T07:00:00+02:00',
+    temperature: {
+      imperial: { value: 34.0, unit: 'F'},
+    },
+    type: 'Mostly cloudy',
+    icon: 6
+  },
+  {
+    id: 'lw3',
+    date: '2019-11-29T07:00:00+02:00',
+    temperature: {
+      imperial: { value: 41.0, unit: 'F'},
+    },
+    icon: 18,
+    type: 'Rain',
+  },
+  {
+    id: 'lw4',
+    date: '2019-11-30T07:00:00+02:00',
+    temperature: {
+      imperial: { value: 30.0, unit: 'F'},
+    },
+    icon: 6,
+    type: 'Mostly cloudy'
+  },
+  {
+    id: 'lw5',
+    date: '2019-12-01T07:00:00+02:00',
+    temperature: {
+      imperial: { value: 26.0, unit: 'F'},
+    },
+    icon: 4,
+    type: 'Intermittent clouds'
+  }
+];
 const favouritesList: Array<{title: string, cityKey: number}> = [
 
 ];
@@ -319,6 +366,7 @@ const cels = {
 export {
   autocomplite,
   weatherShort,
+  weatherFewDaysResp,
   weatherFewDays,
   favouritesList,
   cels,

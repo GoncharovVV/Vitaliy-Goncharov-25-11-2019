@@ -1,28 +1,24 @@
 import * as React from 'react';
 import { AsyncTypeahead } from 'react-bootstrap-typeahead';
+import { connect } from 'react-redux';
+import { updateCity } from '../../actions/actions';
 import { ICity } from '../../utils/types';
 import WithWeatherService from '../HocHelpers/WithWeatherService';
 import './Search.scss';
 export interface SearchProps {
-  getCities?: any;
+  getCities?: any,
+  currentCity?: any,
+  updateCity?: any
 }
 
-const Search: React.FC<SearchProps> = ({ getCities }) => {
+const Search: React.FC<SearchProps> = ({ getCities, currentCity, updateCity }) => {
   const [isLoading, setisLoading] = React.useState<boolean>(false);
-  const [options, setOptions] = React.useState<Array<ICity>>([
-    {
-      id: '323903',
-      localizedName: 'Kharkiv',
-      country: 'Ukraine',
-      administrative: 'some'
-    }
-  ]);
+  const [options, setOptions] = React.useState<Array<ICity>>([currentCity]);
   const multiple = React.useState<boolean>(false);
   const allowNew = React.useState<boolean>(false);
-
   const onChange = (selected: Array<ICity>) => {
     if (selected.length > 0) {
-      console.log(selected[0].id);
+      updateCity(selected[0]);
     }
   };
 
@@ -44,7 +40,7 @@ const Search: React.FC<SearchProps> = ({ getCities }) => {
       isLoading={isLoading}
       allowNew={allowNew[0]}
       multiple={multiple[0]}
-      placeholder="Search for a Github user..."
+      placeholder="Search for City weather"
       onChange={onChange}
       onSearch={onSearch}
       labelKey={getLabelKey}
@@ -62,4 +58,12 @@ const mapMethodsToProps = (weatherService: any) => {
     getCities: weatherService.getCities
   };
 };
-export default WithWeatherService(Search, mapMethodsToProps);
+const mapStateToProps = (state: any) => {
+  return {
+    currentCity: state.currentCity
+  }
+};
+const mapDispatchToProps = {
+  updateCity
+};
+export default WithWeatherService(connect(mapStateToProps, mapDispatchToProps)(Search), mapMethodsToProps);

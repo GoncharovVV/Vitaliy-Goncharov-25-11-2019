@@ -8,7 +8,7 @@ export interface HeaderProps {
 const Header: React.FC<HeaderProps> = () => {
   return (
     <header className="header">
-      logo
+      <span className="logo">Weather App</span>
       <nav className="navigation">
         <ul className="list">
           <li className="list__item">
@@ -17,7 +17,7 @@ const Header: React.FC<HeaderProps> = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink className="list__link" to="/favorites">
+            <NavLink className="list__link" activeClassName="active" to="/favorites">
               Favorites
             </NavLink>
           </li>

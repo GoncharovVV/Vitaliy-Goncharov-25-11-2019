@@ -11,7 +11,7 @@ export default class WeatherService {
 
   getResource = async (url: string) => {
     const res = await fetch(`${this._urlApiBase}${url}`);
-    console.log(res);
+
     if (!res.ok) {
       throw new Error(`Could not get data, received ${res.status}`);
     }
@@ -35,7 +35,8 @@ export default class WeatherService {
   };
 
   getWeatherIcon = (id: number) => {
-    return `https://developer.accuweather.com/sites/default/files/${id}-s.png`;
+    const imgId = id.toString().length > 1 ? id : `0${id}`;
+    return `https://developer.accuweather.com/sites/default/files/${imgId}-s.png`;
   };
 
   _transformCities = (citiesArr: Array<ICitiesResponce>): Array<ICity> => {

@@ -1,0 +1,7 @@
+
+@import '../../scss/mixin', '../../scss/variables';
+.city-weather__container {
+  border-radius: 10px;
+  border: $border-grey;
+  padding: 1.5rem 2rem;
+}

@@ -15,7 +15,7 @@ class ErrorBoundry extends React.Component<ErrorBoundryProps, ErrorBoundryState>
     this.setState({
       hasError: true
     });
-  }
+  };
   render() {
     if (this.state.hasError) {
       return (

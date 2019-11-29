@@ -8,7 +8,7 @@ export interface ICitiesResponce {
   AdministrativeArea: { ID: string, LocalizedName: string }
 };
 export type WeatherServiceContextProps = {
-  
+
 };
 export interface ICity {
   id: string,
@@ -21,12 +21,13 @@ export interface ITemperatureValue {
   unit: string
 };
 export interface ITemperature {
-  temperature: {
-    metric: ITemperatureValue,
-    imperial: ITemperatureValue
+  temperature?: {
+    metric?: ITemperatureValue,
+    imperial?: ITemperatureValue
   }
 }
 export interface IWeather extends ITemperature {
+  id: string,
   date?: string,
   type: string,
   icon: number,
