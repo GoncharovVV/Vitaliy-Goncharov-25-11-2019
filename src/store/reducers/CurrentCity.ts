@@ -1,12 +1,17 @@
 import { currentCityConstant } from '../../utils/constants';
 import { ICity } from '../../utils/types';
 
-const updateCurrentCity = (state: ICity = currentCityConstant, action: any) => {
+const updateCurrentCity = (state: any, action: any): ICity => {
+  if (!state) {
+    return {
+      ...currentCityConstant
+    }
+  };
   switch(action.type) {
     case 'CITY_UPDATED':
       return action.payload;
     default:
-      return state
+      return state.currentCity
   }
 };
 

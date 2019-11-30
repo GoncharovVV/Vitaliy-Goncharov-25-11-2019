@@ -20,6 +20,7 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
     "redux": "^4.0.4",
+    "redux-persist": "^6.0.0",
     "tslint-react": "^4.1.0",
     "typescript": "^3.7.2"
   },

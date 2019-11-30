@@ -9,7 +9,7 @@ import {
 
 import { transformTemp } from '../utils/helper';
 
-import { Cities } from '../dummyData';
+import { Cities, weatherFewDays } from '../dummyData';
 
 export default class WeatherService {
   _urlApiBase = 'https://dataservice.accuweather.com/';
@@ -61,8 +61,9 @@ export default class WeatherService {
   };
 
   getWeatherFevDays = async (cityKey: number): Promise<Array<IWeather>> => {
-    const res = await this.getResource(`forecasts/v1/daily/5day/${cityKey}?apikey=${this._apiKey}`);
-    return this._transformWeatherFevDays(res.DailyForecasts);
+    // const res = await this.getResource(`forecasts/v1/daily/5day/${cityKey}?apikey=${this._apiKey}`);
+    // return this._transformWeatherFevDays(res.DailyForecasts);
+    return weatherFewDays; // MOCKDATA -> remove
   };
 
   getWeatherIcon = (id: number) => {
