@@ -23,6 +23,7 @@ export default class WeatherService {
     return citiesArr.map(({ Key, LocalizedName, Country, AdministrativeArea }) => ({
       id: Key,
       localizedName: LocalizedName,
+      isFavourite: false,
       country: Country.LocalizedName,
       administrative: AdministrativeArea.LocalizedName
     }));

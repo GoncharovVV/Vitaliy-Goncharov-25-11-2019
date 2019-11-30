@@ -10,6 +10,8 @@ const updateCurrentCity = (state: any, action: any): ICity => {
   switch(action.type) {
     case 'CITY_UPDATED':
       return action.payload;
+    case 'CITY_FAVOURITES_UPDATED':
+      return action.payload;
     default:
       return state.currentCity
   }

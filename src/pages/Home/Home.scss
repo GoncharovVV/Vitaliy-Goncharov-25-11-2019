@@ -8,3 +8,7 @@
     padding: 1.5rem;
   }
 }
+.city-weather__top {
+  @include flex($wrap: wrap, $align: center);
+  margin-bottom: 3rem;
+}

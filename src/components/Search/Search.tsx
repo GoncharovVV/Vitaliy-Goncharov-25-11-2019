@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { AsyncTypeahead } from 'react-bootstrap-typeahead';
 import { connect } from 'react-redux';
-import { updateCity } from '../../store/actions/actions';
+import { updateCity } from '../../store/actions/cityActions';
 import { ICity } from '../../utils/types';
 import { WeatherServiceContex } from '../WeatherServiceContext';
 import './Search.scss';

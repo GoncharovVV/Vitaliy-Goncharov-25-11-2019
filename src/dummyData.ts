@@ -18,30 +18,35 @@ const weatherShort = [
 const Cities = [
   {
     id: '323903',
+    isFavourite: false,
     localizedName: 'Kharkiv',
     country: 'Ukraine',
     administrative: 'test'
   },
   {
     id: '1215508',
+    isFavourite: false,
     localizedName: 'Kharkivske',
     country: 'Rus',
     administrative: 'test'
   },
   {
     id: '1215506',
+    isFavourite: false,
     localizedName: 'Kharkivtsi',
     country: 'Ne rus',
     administrative: 'test'
   },
   {
     id: '1215510',
+    isFavourite: false,
     localizedName: 'Kharkivka',
     country: 'NDND',
     administrative: 'test'
   },
   {
     id: '1215507',
+    isFavourite: false,
     localizedName: 'Kharkivtsi',
     country: 'Test',
     administrative: 'test'
