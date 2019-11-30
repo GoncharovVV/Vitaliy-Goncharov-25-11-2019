@@ -1,18 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { AsyncTypeahead } from 'react-bootstrap-typeahead';
 import { connect } from 'react-redux';
 import { updateCity } from '../../actions/actions';
 import { ICity } from '../../utils/types';
-import WithWeatherService from '../HocHelpers/WithWeatherService';
+import { WeatherServiceContex } from '../WeatherServiceContext';
 import './Search.scss';
 export interface SearchProps {
   getCities?: any,
   currentCity?: any,
-  updateCity?: any
+  updateCity?: any,
 }
 
-const Search: React.FC<SearchProps> = ({ getCities, currentCity, updateCity }) => {
-
+const Search: React.FC<SearchProps> = ({ currentCity, updateCity }) => {
+  const { getCities } = useContext(WeatherServiceContex);
   const [isLoading, setisLoading] = React.useState<boolean>(false);
   const [options, setOptions] = React.useState<Array<ICity>>([currentCity]);
   const multiple = React.useState<boolean>(false);
@@ -56,17 +56,12 @@ Search.defaultProps = {
   getCities: () => {}
 };
 
-const mapMethodsToProps = (weatherService: any) => {
-  return {
-    getCities: weatherService.getCities
-  };
-};
 const mapStateToProps = (state: any) => {
   return {
     currentCity: state.currentCity
-  }
+  };
 };
 const mapDispatchToProps = {
   updateCity
 };
-export default WithWeatherService(connect(mapStateToProps, mapDispatchToProps)(Search), mapMethodsToProps);
+export default connect(mapStateToProps, mapDispatchToProps)(Search);

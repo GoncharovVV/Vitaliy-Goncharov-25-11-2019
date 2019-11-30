@@ -7,8 +7,3 @@ export interface ICitiesResponce {
   Country: { ID: string, LocalizedName: string },
   AdministrativeArea: { ID: string, LocalizedName: string }
 };
-
-export interface IWeatherFevDaysResponse {
-  Headline: object,
-  DailyForecasts: object
-}

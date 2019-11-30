@@ -5,8 +5,9 @@ import {
 
 import {
   ICitiesResponce,
-  IWeatherFevDaysResponse
 } from './types';
+
+import { transformTemp } from '../utils/helper';
 
 import { Cities } from '../dummyData';
 
@@ -27,18 +28,19 @@ export default class WeatherService {
     }));
   };
 
-  _transformWeatherFevDays = (weatherArr: Array<IWeatherFevDaysResponse>): Array<IWeather> => {
+  _transformWeatherFevDays = (weatherArr: Array<any>): Array<IWeather> => {
     return weatherArr.map((item, idx: number) => ({
       id: `lw${idx}`,
-      date: '2019-11-27T07:00:00+02:00',
-      temperatureImp: '32.0 F',
-      temperatureMetr: '0 C',
-      type: 'Showers',
-      icon: 12
+      date: item.Date,
+      temperatureImp: `${item.Temperature.Minimum.Value} ${item.Temperature.Minimum.Unit}` ,
+      temperatureMetr: `${transformTemp(item.Temperature.Minimum.Value, item.Temperature.Minimum.Unit)} C`,
+      type: item.Day.IconPhrase,
+      icon: item.Day.Icon
     }));
   };
 
   getResource = async (url: string): Promise<any> => {
+    console.log('get1');
     const res = await fetch(`${this._urlApiBase}${url}`);
 
     if (!res.ok) {
@@ -60,7 +62,7 @@ export default class WeatherService {
 
   getWeatherFevDays = async (cityKey: number): Promise<Array<IWeather>> => {
     const res = await this.getResource(`forecasts/v1/daily/5day/${cityKey}?apikey=${this._apiKey}`);
-    return res;
+    return this._transformWeatherFevDays(res.DailyForecasts);
   };
 
   getWeatherIcon = (id: number) => {

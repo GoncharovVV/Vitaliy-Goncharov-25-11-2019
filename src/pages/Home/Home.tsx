@@ -1,55 +1,57 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { connect } from 'react-redux';
-import Search from '../../components/Search';
-import CardList from '../../components/CardList';
-import WithWeatherService from '../../components/HocHelpers';
 import { updateWeatherList } from '../../actions/actions';
+import CardList from '../../components/CardList';
+import Search from '../../components/Search';
 import Spinner from '../../components/Spinner/indexs';
+import WeatherItem from '../../components/WeatherItem';
+import { WeatherServiceContex } from '../../components/WeatherServiceContext';
 import { IWeather } from '../../utils/types';
 import './Home.scss';
-import WeatherItem from '../../components/WeatherItem';
+
 export interface HomeProps {
-  currentCity?:any,
+  currentCity?: any,
   isLoading: boolean,
   weatherItemsList: Array<IWeather>,
+  updateWeatherList: any
 }
 
-const Home: React.FC<HomeProps> = ({ currentCity, isLoading, weatherItemsList }) => {
+const Home: React.FC<HomeProps> = ({ currentCity, isLoading, weatherItemsList, updateWeatherList }) => {
   const spinner = isLoading ? <Spinner /> : null;
-  const weatherItems = weatherItemsList.map(item => {
-    return (
-      <WeatherItem {...item} key={item.id}/>
-    )
+  const { getWeatherFevDays } = useContext(WeatherServiceContex);
+  const weatherItems = weatherItemsList.map((item) => {
+    return <WeatherItem {...item} key={item.id} />;
   });
+
   React.useEffect(() => {
-    console.log(currentCity.localizedName);
+    if (currentCity.id) {
+      getWeatherFevDays(currentCity.id).then((weatherList: Array<IWeather>) => {
+        updateWeatherList(weatherList, 'home');
+      });
+    }
   }, [currentCity]);
+
   return (
     <section className="container">
       <Search />
       <div className="city-weather__container">
         {spinner}
-        <CardList>
-          {weatherItems}
-        </CardList>
+        <CardList>{weatherItems}</CardList>
       </div>
     </section>
   );
 };
 
-const mapMethodsToProps = (weatherService: any) => {
-  return {
-    getWeatherFevDays: weatherService.getWeatherFevDays
-  };
-};
 const mapStateToProps = (state: any) => {
   return {
     currentCity: state.currentCity,
     isLoading: state.weatherList.isLoading,
     weatherItemsList: state.weatherList.items
-  }
+  };
 };
+
 const mapDispatchToProps = {
   updateWeatherList
 };
-export default WithWeatherService(connect(mapStateToProps, mapDispatchToProps)(Home), mapMethodsToProps);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

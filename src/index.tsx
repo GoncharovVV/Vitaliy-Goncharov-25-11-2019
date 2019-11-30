@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { createStore } from 'redux';
-import reducer from './store/reducers'
 import App from './components/App';
-import { WeatherServiceProvider } from './components/WeatherServiceContext';
 import ErrorBoundry from './components/ErrorBoundry';
-import WeatherService from './services/WeatherService';
+import { WeatherServiceContex } from './components/WeatherServiceContext';
 import './index.scss';
+import WeatherService from './services/WeatherService';
+import reducer from './store/reducers';
 
 const store = createStore(reducer);
 const weatherService = new WeatherService();
@@ -18,11 +18,11 @@ store.subscribe(()=> {
 ReactDOM.render(
   <Provider store={store}>
     <ErrorBoundry>
-      <WeatherServiceProvider value={weatherService}>
+      <WeatherServiceContex.Provider value={weatherService}>
         <Router>
           <App />
         </Router>
-      </WeatherServiceProvider>
+      </WeatherServiceContex.Provider>
     </ErrorBoundry>
   </Provider>,
   document.getElementById('root')
