@@ -15,33 +15,7 @@ export default class WeatherService {
   _urlApiBase = 'https://dataservice.accuweather.com/';
   _apiKey = 't2US9Eg1bQs0uJkVtLaIPA6uQCWjGGWM';
 
-  _transformImgId = (id: number): number | string => {
-    return id.toString().length > 1 ? id : `0${id}`;
-  }
-
-  _transformCities = (citiesArr: Array<ICitiesResponce>): Array<ICity> => {
-    return citiesArr.map(({ Key, LocalizedName, Country, AdministrativeArea }) => ({
-      id: Key,
-      localizedName: LocalizedName,
-      isFavourite: false,
-      country: Country.LocalizedName,
-      administrative: AdministrativeArea.LocalizedName
-    }));
-  };
-
-  _transformWeatherFevDays = (weatherArr: Array<any>): Array<IWeather> => {
-    return weatherArr.map((item, idx: number) => ({
-      id: `lw${idx}`,
-      date: item.Date,
-      temperatureImp: `${item.Temperature.Minimum.Value} ${item.Temperature.Minimum.Unit}` ,
-      temperatureMetr: `${transformTemp(item.Temperature.Minimum.Value, item.Temperature.Minimum.Unit)} C`,
-      type: item.Day.IconPhrase,
-      icon: item.Day.Icon
-    }));
-  };
-
   getResource = async (url: string): Promise<any> => {
-    console.log('get1');
     const res = await fetch(`${this._urlApiBase}${url}`);
 
     if (!res.ok) {
@@ -71,5 +45,30 @@ export default class WeatherService {
     const imgId = this._transformImgId(id);
 
     return `https://developer.accuweather.com/sites/default/files/${imgId}-s.png`;
+  };
+
+  _transformImgId = (id: number): number | string => {
+    return id.toString().length > 1 ? id : `0${id}`;
+  }
+
+  _transformCities = (citiesArr: Array<ICitiesResponce>): Array<ICity> => {
+    return citiesArr.map(({ Key, LocalizedName, Country, AdministrativeArea }) => ({
+      id: Key,
+      localizedName: LocalizedName,
+      isFavourite: false,
+      country: Country.LocalizedName,
+      administrative: AdministrativeArea.LocalizedName
+    }));
+  };
+
+  _transformWeatherFevDays = (weatherArr: Array<any>): Array<IWeather> => {
+    return weatherArr.map((item, idx: number) => ({
+      id: `lw${idx}`,
+      date: item.Date,
+      temperatureImp: `${item.Temperature.Minimum.Value} ${item.Temperature.Minimum.Unit}` ,
+      temperatureMetr: `${transformTemp(item.Temperature.Minimum.Value, item.Temperature.Minimum.Unit)} C`,
+      type: item.Day.IconPhrase,
+      icon: item.Day.Icon
+    }));
   };
 }

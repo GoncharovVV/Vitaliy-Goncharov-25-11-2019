@@ -12,7 +12,7 @@ const AddFavourites: React.FC<AddFavouritesProps> = ({ currentCity, updateFavour
   const { isFavourite } = currentCity;
   console.log(isFavourite);
   const onClick = () => {
-    updateFavourites({...currentCity, isFavourite: !currentCity.isFavourite })
+    updateFavourites({...currentCity, isFavourite: !currentCity.isFavourite });
   };
   return (
     <button className="fav-button" onClick={onClick}>

@@ -8,19 +8,19 @@ const updateWetherList = (state: any , action: any) => {
     }
   };
   switch(action.type) {
-    case 'WEATHER_LIST_UPDATED':
+    case 'FETCH_WEATHER_LIST_SUCCESS':
       return {
         isLoading: false,
         items: action.payload,
         error: false
       }
-    case 'WEATHER_LIST_FETCH':
+    case 'FETCH_WEATHER_LIST_REQUEST':
       return {
         isLoading: true,
         items: [],
         error: false
       }
-    case 'WEATHER_LIST_ERROR':
+    case 'FETCH_WEATHER_LIST_FAILURE':
       return {
         isLoading: false,
         items: action.payload,

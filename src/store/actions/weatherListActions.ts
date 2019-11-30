@@ -1,17 +1,17 @@
 export const updateWeatherList = (weatherList:any):any => {
   return {
-    type: 'WEATHER_LIST_UPDATED',
+    type: 'FETCH_WEATHER_LIST_SUCCESS',
     payload: weatherList
   }
 };
 export const fetchWeatherList = ():any => {
   return {
-    type: 'WEATHER_LIST_FETCH',
+    type: 'FETCH_WEATHER_LIST_REQUEST',
   }
 };
 export const onErrorWeatherList = ():any => {
   return {
-    type: 'WEATHER_LIST_ERROR',
+    type: 'FETCH_WEATHER_LIST_FAILURE',
     payload: []
   }
 };
