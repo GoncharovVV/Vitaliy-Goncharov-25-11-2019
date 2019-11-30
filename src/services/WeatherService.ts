@@ -24,9 +24,9 @@ export default class WeatherService {
     return await res.json();
   };
 
-  getWeather = async (cityKey: number = 323903) => {
+  getWeather = async (cityKey: number) => {
     const res = await this.getResource(`currentconditions/v1/${cityKey}?apikey=${this._apiKey}`);
-    return res;
+    return this._transformWeatherSingle(res);
   };
 
   getCities = async (query: string): Promise<Array<ICity>> => {
@@ -58,6 +58,21 @@ export default class WeatherService {
       country: Country.LocalizedName,
       administrative: AdministrativeArea.LocalizedName
     }));
+  };
+
+  _transformWeatherSingle = ( weatherArr: Array<any> ): IWeather => {
+    const {
+      WeatherIcon,
+      WeatherText,
+      Temperature
+    } = weatherArr[0];
+    const { Metric, Imperial } = Temperature;
+    return {
+      type: WeatherText,
+      icon: WeatherIcon,
+      temperatureMetr: `${Metric.Value} ${Metric.Unit}`,
+      temperatureImp: `${Imperial.Value} ${Imperial.Unit}`
+    };
   };
 
   _transformWeatherFevDays = (weatherArr: Array<any>): Array<IWeather> => {

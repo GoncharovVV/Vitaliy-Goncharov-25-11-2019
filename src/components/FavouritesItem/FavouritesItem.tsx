@@ -1,39 +1,67 @@
 import React, { useContext, useState } from 'react';
-import { ICity } from '../../utils/types';
+import { useHistory } from "react-router-dom";
+import { ICity, IWeather } from '../../utils/types';
 import { WeatherServiceContex } from '../WeatherServiceContext';
+import { updateCity } from '../../store/actions/cityActions';
+
+
 import { formatDate } from '../../utils/helper';
-export interface FavouritesItemProps extends ICity {}
+import { connect } from 'react-redux';
+export interface FavouritesItemProps extends ICity {
+  updateCity?: any,
+}
 
 const FavouritesItem: React.FC<FavouritesItemProps> = ({
   id,
   localizedName,
   country,
-  administrative
+  administrative,
+  updateCity
 }) => {
-
-  const { getWeatherIcon } = useContext(WeatherServiceContex);
-  const [icon, setIcon] = useState('');
+  const history = useHistory();
+  const { getWeather, getWeatherIcon } = useContext(WeatherServiceContex);
+  const [imgUrl, setImgUrl] = useState('');
   const [type, setType] = useState('-');
   const [temperatureImp, setTemperatureImp] = useState('-');
   const [temperatureMetr, setTemperatureMetr] = useState('-');
 
   React.useEffect(() => {
     if (id) {
-      console.log(id);
+      // console.log(id);
+      // getWeatherIcon(icon)
+      // getWeather(id).then(({ icon, temperatureImp, temperatureMetr, type }:IWeather) => {
+      //   const imgUrl = getWeatherIcon(icon);
+      //   setImgUrl(imgUrl);
+      //   setType(type);
+      //   setTemperatureImp(temperatureImp);
+      //   setTemperatureMetr(temperatureMetr);
+      // });
     }
-  }, [id]);
+  }, [id, getWeather]);
+  const onClick = () => {
+    // console.log('click');
+    updateCity({id, localizedName, country, administrative});
+    history.push('/');
+  };
   return (
     <li className="card-item">
-      <button className="card-item__content">
+      <button className="card-item__content" onClick={onClick}>
         <p className="card-item__date">{localizedName}</p>
-        <img src={getWeatherIcon(icon)} className="card-item__image" alt="type" />
+        {/* <img src={imgUrl} className="card-item__image" alt="type" />
         <h3 className="card-item__title">{type}</h3>
         <div className="card-item__temp">
           {temperatureImp} / {temperatureMetr}
-        </div>
+        </div> */}
       </button>
     </li>
   );
 }
-
-export default FavouritesItem;
+const mapStateToProps = (state: any) => {
+  return {
+    currentCity: state.currentCity
+  };
+};
+const mapDispatchToProps = {
+  updateCity
+};
+export default connect(mapStateToProps, mapDispatchToProps)(FavouritesItem);

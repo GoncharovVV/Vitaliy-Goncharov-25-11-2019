@@ -14,10 +14,9 @@ export interface ITemperature {
   temperatureImp: string,
 }
 export interface IWeather extends ITemperature {
-  id: string,
+  id?: string,
   date?: string,
   type: string,
   icon: number,
 };
 
-export interface IFavourite extends ICity, IWeather {};

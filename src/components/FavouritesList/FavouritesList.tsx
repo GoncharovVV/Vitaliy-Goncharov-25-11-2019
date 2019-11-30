@@ -11,7 +11,7 @@ const FavouritesList: React.SFC<FavouritesListProps> = ({ favouritesList }) => {
     <ul className="cards">
       {
         favouritesList.items.map((favItem:any) => {
-          return <FavouritesItem {...favItem}/>
+          return <FavouritesItem {...favItem} key={favItem.id}/>
         })
       }
     </ul>
