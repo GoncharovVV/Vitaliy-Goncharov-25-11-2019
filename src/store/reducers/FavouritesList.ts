@@ -1,7 +1,8 @@
+import { favouritesList } from '../../dummyData';
 const updateFavouritesList = (state: any, action: any) => {
   if (!state) {
     return {
-      items: [],
+      items: [...favouritesList],
     }
   };
   switch(action.type) {

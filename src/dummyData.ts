@@ -18,35 +18,30 @@ const weatherShort = [
 const Cities = [
   {
     id: '323903',
-    isFavourite: false,
     localizedName: 'Kharkiv',
     country: 'Ukraine',
     administrative: 'test'
   },
   {
     id: '1215508',
-    isFavourite: false,
     localizedName: 'Kharkivske',
     country: 'Rus',
     administrative: 'test'
   },
   {
     id: '1215506',
-    isFavourite: false,
     localizedName: 'Kharkivtsi',
     country: 'Ne rus',
     administrative: 'test'
   },
   {
     id: '1215510',
-    isFavourite: false,
     localizedName: 'Kharkivka',
     country: 'NDND',
     administrative: 'test'
   },
   {
     id: '1215507',
-    isFavourite: false,
     localizedName: 'Kharkivtsi',
     country: 'Test',
     administrative: 'test'
@@ -203,8 +198,37 @@ const weatherFewDays = [
     type: 'Intermittent clouds'
   }
 ];
-const favouritesList: Array<{title: string, cityKey: number}> = [
-
+const favouritesList = [
+  {
+    id: '323903',
+    localizedName: 'Kharkiv',
+    country: 'Ukraine',
+    administrative: 'test'
+  },
+  {
+    id: '1215508',
+    localizedName: 'Kharkivske',
+    country: 'Rus',
+    administrative: 'test'
+  },
+  {
+    id: '1215506',
+    localizedName: 'Kharkivtsi',
+    country: 'Ne rus',
+    administrative: 'test'
+  },
+  {
+    id: '1215510',
+    localizedName: 'Kharkivka',
+    country: 'NDND',
+    administrative: 'test'
+  },
+  {
+    id: '1215507',
+    localizedName: 'Kharkivtsi',
+    country: 'Test',
+    administrative: 'test'
+  }
 ];
 const cels = {
   Headline: {

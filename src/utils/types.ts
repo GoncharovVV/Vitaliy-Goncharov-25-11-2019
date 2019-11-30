@@ -4,7 +4,6 @@ export type WeatherServiceContextProps = {
 };
 export interface ICity {
   id: string,
-  isFavourite: boolean,
   localizedName: string,
   country?: string,
   administrative?: string

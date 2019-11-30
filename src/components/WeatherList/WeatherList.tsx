@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { connect } from 'react-redux';
-import { WeatherServiceContex } from '../WeatherServiceContext';
 import { fetchWeatherList, onErrorWeatherList, updateWeatherList } from '../../store/actions/weatherListActions';
 import { IWeather } from '../../utils/types';
 import Spinner from '../Spinner/indexs';
 import WeatherItem from '../WeatherItem';
+import { WeatherServiceContex } from '../WeatherServiceContext';
 
 export interface WeatherListProps {
   currentCity: any;
@@ -24,13 +24,13 @@ const WeatherList: React.FC<WeatherListProps> = ({
   fetchWeatherList,
   weatherItemsError
 }) => {
-
   const { getWeatherFevDays } = useContext(WeatherServiceContex);
 
   React.useEffect(() => {
-    if (currentCity.id) {
+    const { id } = currentCity;
+    if (id) {
       fetchWeatherList();
-      getWeatherFevDays(currentCity.id)
+      getWeatherFevDays(id)
         .then((weatherList: Array<IWeather>) => {
           updateWeatherList(weatherList);
         })
@@ -38,21 +38,15 @@ const WeatherList: React.FC<WeatherListProps> = ({
     }
   }, [currentCity, getWeatherFevDays, updateWeatherList, onErrorWeatherList, fetchWeatherList]);
 
-  if (isLoading) {
-    return <Spinner />
-  };
+  if (isLoading) return <Spinner />;
 
-  if (weatherItemsError) {
-    return <span>Error</span>
-  };
+  if (weatherItemsError) return <span>Error</span>;
 
   return (
     <ul className="cards">
-      {
-        weatherItemsList.map((item) => {
-          return <WeatherItem {...item} key={item.id} />;
-        })
-      }
+      {weatherItemsList.map((item) => {
+        return <WeatherItem {...item} key={item.id} />;
+      })}
     </ul>
   );
 };
