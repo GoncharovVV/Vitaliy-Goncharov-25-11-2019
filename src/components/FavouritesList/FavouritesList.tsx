@@ -1,14 +1,26 @@
 import React from 'react';
 import './FavouritesList.scss';
 import FavouritesItem from '../FavouritesItem';
-export interface FavouritesListProps {}
+import { connect } from 'react-redux';
+export interface FavouritesListProps {
+  favouritesList: any
+}
 
-const FavouritesList: React.SFC<FavouritesListProps> = () => {
+const FavouritesList: React.SFC<FavouritesListProps> = ({ favouritesList }) => {
   return (
     <ul className="cards">
-      <FavouritesItem />
+      {
+        favouritesList.items.map((favItem:any) => {
+          return <FavouritesItem {...favItem}/>
+        })
+      }
     </ul>
   );
 }
+const mapStateToProps = (state: any) => {
+  return {
+    favouritesList: state.favouritesList,
+  };
+};
 
-export default FavouritesList;
+export default connect(mapStateToProps)(FavouritesList);

@@ -14,7 +14,7 @@ export interface WeatherListProps {
   fetchWeatherList: any;
   onErrorWeatherList: any;
   weatherItemsError: boolean;
-}
+};
 const WeatherList: React.FC<WeatherListProps> = ({
   currentCity,
   isLoading,
