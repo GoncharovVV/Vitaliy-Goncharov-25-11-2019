@@ -15,7 +15,6 @@ const ToggleTemperature: React.SFC<ToggleTemperatureProps> = ({
   setTemperatureMETR
 }) => {
   const onclick = () => {
-    console.log('click');
     if (temperatureType === 'F') setTemperatureMETR();
     else {
       setTemperatureIMP();

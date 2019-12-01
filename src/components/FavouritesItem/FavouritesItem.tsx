@@ -22,7 +22,6 @@ const FavouritesItem: React.FC<FavouritesItemProps> = ({
   updateCity,
   temperatureType
 }) => {
-  console.log(temperatureType);
   const history = useHistory();
   const { getWeather, getWeatherIcon } = useContext(WeatherServiceContex);
   const [imgUrl, setImgUrl] = useState('');
@@ -47,7 +46,6 @@ const FavouritesItem: React.FC<FavouritesItemProps> = ({
     }
   }, [id, getWeather]);
   const onClick = () => {
-    // console.log('click');
     updateCity({ id, localizedName, country, administrative });
     history.push('/');
   };
