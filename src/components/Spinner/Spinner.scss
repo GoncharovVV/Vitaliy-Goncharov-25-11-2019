@@ -1,4 +1,8 @@
-@import '../../scss/variables';
+@import '../../scss/variables', '../../scss/mixin';
+.spinner-holder {
+  width: 100%;
+  @include flex($just: center, $align: center, $align-c: center);
+}
 @keyframes ldio-8f7rrj255lg {
   0% { transform: rotate(0deg) }
   50% { transform: rotate(180deg) }

@@ -32,13 +32,23 @@ export default class WeatherService {
   getCities = async (query: string): Promise<Array<ICity>> => {
     // const res = await this.getResource(`locations/v1/cities/autocomplete?apikey=${this._apiKey}&q=${query}`);
     // return this._transformCities(res);
-    return Cities; // MOCKDATA -> remove
+    let promise = new Promise<Array<ICity>>((resolve, reject) => {
+      setTimeout(() => resolve(Cities), 1000)
+    });
+
+    let result = await promise;
+    return result; // MOCKDATA -> remove
   };
 
   getWeatherFevDays = async (cityKey: number): Promise<Array<IWeather>> => {
     // const res = await this.getResource(`forecasts/v1/daily/5day/${cityKey}?apikey=${this._apiKey}`);
     // return this._transformWeatherFevDays(res.DailyForecasts);
-    return weatherFewDays; // MOCKDATA -> remove
+    let promise = new Promise<Array<IWeather>>((resolve, reject) => {
+      setTimeout(() => resolve(weatherFewDays), 1000)
+    });
+
+    let result = await promise;
+    return result; // MOCKDATA -> remove
   };
 
   getWeatherIcon = (id: number) => {

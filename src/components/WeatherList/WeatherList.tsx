@@ -34,7 +34,9 @@ const WeatherList: React.FC<WeatherListProps> = ({
         .then((weatherList: Array<IWeather>) => {
           updateWeatherList(weatherList);
         })
-        .catch(onErrorWeatherList());
+        .catch((err:any)=> {
+          console.log('ddd ERRR');
+        });
     }
   }, [currentCity, getWeatherFevDays, updateWeatherList, onErrorWeatherList, fetchWeatherList]);
 
