@@ -6,7 +6,6 @@ const toggleFavList = (items: any, city: any): any => {
   } else {
     return [...items, city];
   }
-  return items;
 };
 
 const updateFavouritesList = (state: any, action: any) => {

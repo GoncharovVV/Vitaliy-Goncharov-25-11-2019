@@ -44,7 +44,7 @@ const FavouritesItem: React.FC<FavouritesItemProps> = ({
           toast.warn(`Something is wrong ${err}`);
         });
     }
-  }, [id, getWeather]);
+  }, [id, getWeather, getWeatherIcon]);
   const onClick = () => {
     updateCity({ id, localizedName, country, administrative });
     history.push('/');
@@ -60,7 +60,7 @@ const FavouritesItem: React.FC<FavouritesItemProps> = ({
             <img src={imgUrl} className="card-item__image" alt="type" />
             <h3 className="card-item__title">{type}</h3>
             <div className="card-item__temp">
-              {temperatureType === 'F' ? <> {temperatureMetr} </> : <> {temperatureImp} </>}
+              {temperatureType === 'F' ? <> {temperatureImp} </> : <> {temperatureMetr} </>}
             </div>
           </>
         )}

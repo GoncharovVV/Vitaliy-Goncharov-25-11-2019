@@ -7,9 +7,10 @@ import { WeatherServiceContex } from '../WeatherServiceContext';
 import './CurrentWeather.scss';
 export interface CurrentWeatherProps {
   cityId: any;
+  temperatureType: string;
 }
 
-const CurrentWeather: React.FC<CurrentWeatherProps> = ({ cityId }) => {
+const CurrentWeather: React.FC<CurrentWeatherProps> = ({ cityId, temperatureType }) => {
   const { getWeather, getWeatherIcon } = useContext(WeatherServiceContex);
   const [imgUrl, setImgUrl] = useState('');
   const [type, setType] = useState('-');
@@ -42,7 +43,7 @@ const CurrentWeather: React.FC<CurrentWeatherProps> = ({ cityId }) => {
           <img className="card-item__image" src={imgUrl} alt={type} />
           <p className="main__type">{type}</p>
           <p className="main__temp">
-            {temperatureImp} / {temperatureMetr}
+            {temperatureType === 'F' ? <> {temperatureImp} </> : <> {temperatureMetr} </>}
           </p>
         </>
       )}
@@ -51,7 +52,8 @@ const CurrentWeather: React.FC<CurrentWeatherProps> = ({ cityId }) => {
 };
 const mapStateToProps = (state: any) => {
   return {
-    cityId: state.currentCity.id
+    cityId: state.currentCity.id,
+    temperatureType: state.temperatureType
   };
 };
 
