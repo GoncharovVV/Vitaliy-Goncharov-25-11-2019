@@ -28,23 +28,23 @@ html {
   }
 }
 :-moz-placeholder {
-  color: #180f29;
+  color: $white;
   transition: color 0.3s;
 }
 ::-moz-placeholder {
-  color: #180f29;
+  color: $white;
   transition: color 0.3s;
 }
 ::-webkit-input-placeholder {
-  color: #180f29;
+  color: $white;
   transition: color 0.3s;
 }
 :-ms-input-placeholder {
-  color: #180f29;
+  color: $white;
   transition: color 0.3s;
 }
 ::placeholder {
-  color: #180f29;
+  color: $white;
   transition: color 0.3s;
 }
 
@@ -68,11 +68,14 @@ body {
   font-size: $fos;
   line-height: 1.2;
   font-weight: 400;
+  color: $white;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: $white;
   min-width: 320px;
   margin: 0;
+  background: rgb(86,104,186);
+  background: linear-gradient(162deg, rgba(86,104,186,1) 0%, rgba(83,168,188,1) 47%, rgba(84,208,172,1) 99%);
 }
 .wrapper {
   @include flex($dir: column);
@@ -83,9 +86,12 @@ body {
   padding: 0 15px;
   margin: 0 auto;
   width: 100%;
+  @include flex($dir: column);
 }
 .main {
   flex: 1 0;
+  @include flex();
+  padding: 0 0 4rem;
 }
 .footer {
   flex: 0 0;
@@ -115,16 +121,16 @@ body {
 
 }
 .card-item__content {
-  box-shadow: 2px 3px 7px 0px rgba(0, 0, 0, 0.45);
+  box-shadow: 2px 3px 7px 0px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
-  border: $border-grey1;
   padding: 10px;
   width: 100%;
+  background-color: #4ef1ff14;
   transform: translateZ(0);
   transition: box-shadow .3s;
   @include min-screen(1024px) {
     &:hover {
-      box-shadow: 2px 3px 11px 0px rgba(0, 0, 0, 0.55);
+      box-shadow: 2px 3px 11px 0px rgba(0, 0, 0, 0.45);
     }
   }
 }
@@ -145,14 +151,13 @@ body {
 	fill: currentColor;
 }
 .card-item__title {
-  color: $grey;
   margin-bottom: 3rem;
 }
 .card-item__date {
   text-align: left;
   margin-bottom: 2rem;
-  color: $grey;
   font-size: $fosSm;
+  color: $white;
 }
 .card-item__temp {
   font-size: $fosLg;

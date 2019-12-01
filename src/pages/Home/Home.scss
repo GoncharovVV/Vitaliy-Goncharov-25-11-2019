@@ -2,8 +2,10 @@
 @import '../../scss/mixin', '../../scss/variables';
 .city-weather__container {
   border-radius: 10px;
-  border: $border-grey;
+  background-color: #ffffff12;
   padding: 1.5rem 2rem;
+  box-shadow: 0px 7px 12px -7px rgba(0, 0, 0, 0.45);
+  flex-grow: 1;
   @include max-screen(640px) {
     padding: 1.5rem;
   }
