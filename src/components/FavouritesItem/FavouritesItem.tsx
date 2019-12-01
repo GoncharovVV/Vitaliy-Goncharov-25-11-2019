@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import Spinner from '../Spinner/indexs';
 export interface FavouritesItemProps extends ICity {
   updateCity?: any,
+  temperatureType: string
 }
 toast.configure({
   autoClose: 2000,
@@ -21,8 +22,10 @@ const FavouritesItem: React.FC<FavouritesItemProps> = ({
   localizedName,
   country,
   administrative,
-  updateCity
+  updateCity,
+  temperatureType
 }) => {
+  console.log(temperatureType);
   const history = useHistory();
   const { getWeather, getWeatherIcon } = useContext(WeatherServiceContex);
   const [imgUrl, setImgUrl] = useState('');
@@ -58,7 +61,11 @@ const FavouritesItem: React.FC<FavouritesItemProps> = ({
             {/* <img src={imgUrl} className="card-item__image" alt="type" />
             <h3 className="card-item__title">{type}</h3>
             <div className="card-item__temp">
-              {temperatureImp} / {temperatureMetr}
+              {
+                temperatureType === 'F'?
+                <> {temperatureMetr} </> :
+                <> {temperatureImp} </>
+              }
             </div> */}
           </>
         }
@@ -68,7 +75,8 @@ const FavouritesItem: React.FC<FavouritesItemProps> = ({
 }
 const mapStateToProps = (state: any) => {
   return {
-    currentCity: state.currentCity
+    currentCity: state.currentCity,
+    temperatureType: state.temperatureType
   };
 };
 const mapDispatchToProps = {

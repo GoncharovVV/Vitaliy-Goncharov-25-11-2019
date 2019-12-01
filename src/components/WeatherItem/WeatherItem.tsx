@@ -3,14 +3,17 @@ import { IWeather } from '../../utils/types';
 import { formatDate } from '../../utils/helper';
 import { WeatherServiceContex } from '../WeatherServiceContext';
 
-export interface WeatherItemProps extends IWeather {}
+export interface WeatherItemProps extends IWeather {
+  temperatureType: string
+}
 
 const WeatherItem: React.FC<WeatherItemProps> = ({
   date,
   temperatureImp,
   temperatureMetr,
   type,
-  icon
+  icon,
+  temperatureType
 }) => {
   const { getWeatherIcon } = useContext(WeatherServiceContex);
   return (
@@ -20,7 +23,11 @@ const WeatherItem: React.FC<WeatherItemProps> = ({
         <img src={getWeatherIcon(icon)} className="card-item__image" alt="type" />
         <h3 className="card-item__title">{type}</h3>
         <div className="card-item__temp">
-          {temperatureImp} / {temperatureMetr}
+          {
+            temperatureType === 'F' ?
+            <>{temperatureImp}</> :
+            <>{temperatureMetr}</>
+          }
         </div>
       </div>
     </li>

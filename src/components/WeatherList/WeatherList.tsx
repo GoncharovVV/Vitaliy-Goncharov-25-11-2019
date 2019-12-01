@@ -22,10 +22,12 @@ export interface WeatherListProps {
   fetchWeatherList: any;
   onErrorWeatherList: any;
   weatherItemsError: boolean;
+  temperatureType: string;
 }
 const WeatherList: React.FC<WeatherListProps> = ({
   currentCity,
   isLoading,
+  temperatureType,
   weatherItemsList,
   updateWeatherList,
   onErrorWeatherList,
@@ -33,7 +35,6 @@ const WeatherList: React.FC<WeatherListProps> = ({
   weatherItemsError
 }) => {
   const { getWeatherFevDays } = useContext(WeatherServiceContex);
-
   React.useEffect(() => {
     const { id } = currentCity;
     if (id) {
@@ -55,7 +56,7 @@ const WeatherList: React.FC<WeatherListProps> = ({
   return (
     <ul className="cards">
       {weatherItemsList.map((item) => {
-        return <WeatherItem {...item} key={item.id} />;
+        return <WeatherItem {...item} temperatureType={temperatureType} key={item.id} />;
       })}
     </ul>
   );
@@ -65,7 +66,8 @@ const mapStateToProps = (state: any) => {
     currentCity: state.currentCity,
     isLoading: state.weatherList.isLoading,
     weatherItemsList: state.weatherList.items,
-    weatherItemsError: state.weatherList.error
+    weatherItemsError: state.weatherList.error,
+    temperatureType: state.temperatureType
   };
 };
 
