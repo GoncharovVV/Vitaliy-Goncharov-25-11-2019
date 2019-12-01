@@ -18,6 +18,9 @@ export default class App extends React.Component<AppProps, AppState> {
       <div className="wrapper">
         <Header />
         <main className="main">
+          <div className="main__row cards">
+
+          </div>
           <Switch>
             <Route path="/" component={Home} exact={true} />
             <Route path="/favorites" component={Favorites} />

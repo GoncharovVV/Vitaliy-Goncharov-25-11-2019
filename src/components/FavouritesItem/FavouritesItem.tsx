@@ -12,7 +12,7 @@ export interface FavouritesItemProps extends ICity {
   updateCity?: any,
 }
 toast.configure({
-  autoClose: 4000,
+  autoClose: 2000,
   draggable: false,
 });
 const FavouritesItem: React.FC<FavouritesItemProps> = ({

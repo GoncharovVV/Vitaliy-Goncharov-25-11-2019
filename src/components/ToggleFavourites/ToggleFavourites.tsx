@@ -1,10 +1,11 @@
+import classnames from 'classnames';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { toast } from 'react-toastify';
 import { ReactComponent as Heart } from '../../assets/icons/heart.svg';
-import { findCityInFav } from '../../utils/helper';
 import { toggleCityToFav } from '../../store/actions/favActions';
+import { findCityInFav } from '../../utils/helper';
 import './ToggleFavourites.scss';
-import classnames from 'classnames';
 
 export interface ToggleFavouritesProps {
   currentCity: any;
@@ -12,17 +13,24 @@ export interface ToggleFavouritesProps {
   toggleCityToFav: any;
 }
 
-const ToggleFavourites: React.FC<ToggleFavouritesProps> = ({ currentCity, favouritesList, toggleCityToFav }) => {
+const ToggleFavourites: React.FC<ToggleFavouritesProps> = ({
+  currentCity,
+  favouritesList,
+  toggleCityToFav
+}) => {
   const { id } = currentCity;
   const idx = findCityInFav(id, favouritesList.items);
-  const [isFav, setIsFav] = useState(idx>-1);
-  const hintClassName = classnames('fav-button', { 'fav-button__active': isFav});
+  const [isFav, setIsFav] = useState(idx > -1);
+  const hintClassName = classnames('fav-button', { 'fav-button__active': isFav });
   useEffect(() => {
-    setIsFav(idx>-1);
+    setIsFav((prevSt: boolean) => {
+      return idx > -1;
+    });
   }, [idx]);
 
   const onClick = () => {
     toggleCityToFav(currentCity);
+    toast.success('Favourites updated!');
   };
   return (
     <button className={hintClassName} onClick={onClick}>

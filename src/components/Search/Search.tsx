@@ -7,7 +7,7 @@ import { ICity } from '../../utils/types';
 import { WeatherServiceContex } from '../WeatherServiceContext';
 import './Search.scss';
 toast.configure({
-  autoClose: 4000,
+  autoClose: 2000,
   draggable: false,
 });
 export interface SearchProps {

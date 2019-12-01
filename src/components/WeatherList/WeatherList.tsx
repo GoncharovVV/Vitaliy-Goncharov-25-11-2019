@@ -11,7 +11,7 @@ import WeatherItem from '../WeatherItem';
 import { WeatherServiceContex } from '../WeatherServiceContext';
 import { toast } from 'react-toastify';
 toast.configure({
-  autoClose: 4000,
+  autoClose: 2000,
   draggable: false
 });
 export interface WeatherListProps {
