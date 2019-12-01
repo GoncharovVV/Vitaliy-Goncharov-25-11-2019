@@ -1,10 +1,15 @@
 import React, { useContext } from 'react';
 import { AsyncTypeahead } from 'react-bootstrap-typeahead';
 import { connect } from 'react-redux';
+import { toast } from 'react-toastify';
 import { updateCity } from '../../store/actions/cityActions';
 import { ICity } from '../../utils/types';
 import { WeatherServiceContex } from '../WeatherServiceContext';
 import './Search.scss';
+toast.configure({
+  autoClose: 4000,
+  draggable: false,
+});
 export interface SearchProps {
   getCities?: any,
   currentCity?: any,
@@ -31,7 +36,7 @@ const Search: React.FC<SearchProps> = ({ currentCity, updateCity }) => {
       setOptions(() => {
         return res;
       });
-    });
+    }).catch((err:any) => {toast.warn(`Something is wrong ${err}`)});
   };
 
   const getLabelKey = (option: ICity) =>

@@ -5,6 +5,7 @@ import Home from '../../pages/Home';
 import NotFound from '../../pages/NotFound';
 import Header from '../Header';
 import './App.scss';
+import 'react-toastify/dist/ReactToastify.css';
 
 export interface AppProps {}
 

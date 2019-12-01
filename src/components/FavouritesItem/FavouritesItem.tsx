@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { ICity, IWeather } from '../../utils/types';
 import { WeatherServiceContex } from '../WeatherServiceContext';
 import { updateCity } from '../../store/actions/cityActions';
+import { toast } from 'react-toastify';
 
 
 import { formatDate } from '../../utils/helper';
@@ -10,7 +11,10 @@ import { connect } from 'react-redux';
 export interface FavouritesItemProps extends ICity {
   updateCity?: any,
 }
-
+toast.configure({
+  autoClose: 4000,
+  draggable: false,
+});
 const FavouritesItem: React.FC<FavouritesItemProps> = ({
   id,
   localizedName,
@@ -27,7 +31,6 @@ const FavouritesItem: React.FC<FavouritesItemProps> = ({
 
   React.useEffect(() => {
     if (id) {
-      // console.log(id);
       // getWeatherIcon(icon)
       // getWeather(id).then(({ icon, temperatureImp, temperatureMetr, type }:IWeather) => {
       //   const imgUrl = getWeatherIcon(icon);
@@ -35,7 +38,7 @@ const FavouritesItem: React.FC<FavouritesItemProps> = ({
       //   setType(type);
       //   setTemperatureImp(temperatureImp);
       //   setTemperatureMetr(temperatureMetr);
-      // });
+      // }).catch((err:any) => {toast.warn(`Something is wrong ${err}`)});
     }
   }, [id, getWeather]);
   const onClick = () => {

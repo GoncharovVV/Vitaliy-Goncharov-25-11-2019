@@ -1,11 +1,19 @@
 import React, { useContext } from 'react';
 import { connect } from 'react-redux';
-import { fetchWeatherList, onErrorWeatherList, updateWeatherList } from '../../store/actions/weatherListActions';
+import {
+  fetchWeatherList,
+  onErrorWeatherList,
+  updateWeatherList
+} from '../../store/actions/weatherListActions';
 import { IWeather } from '../../utils/types';
 import Spinner from '../Spinner/indexs';
 import WeatherItem from '../WeatherItem';
 import { WeatherServiceContex } from '../WeatherServiceContext';
-
+import { toast } from 'react-toastify';
+toast.configure({
+  autoClose: 4000,
+  draggable: false
+});
 export interface WeatherListProps {
   currentCity: any;
   isLoading: boolean;
@@ -14,7 +22,7 @@ export interface WeatherListProps {
   fetchWeatherList: any;
   onErrorWeatherList: any;
   weatherItemsError: boolean;
-};
+}
 const WeatherList: React.FC<WeatherListProps> = ({
   currentCity,
   isLoading,
@@ -34,8 +42,8 @@ const WeatherList: React.FC<WeatherListProps> = ({
         .then((weatherList: Array<IWeather>) => {
           updateWeatherList(weatherList);
         })
-        .catch((err:any)=> {
-          console.log('ddd ERRR');
+        .catch((err: any) => {
+          toast.warn(`Something is wrong ${err}`);
         });
     }
   }, [currentCity, getWeatherFevDays, updateWeatherList, onErrorWeatherList, fetchWeatherList]);
