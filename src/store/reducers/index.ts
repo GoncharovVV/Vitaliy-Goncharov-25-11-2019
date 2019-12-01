@@ -9,7 +9,7 @@ const reducer = (state: any, action: any) => {
     currentCity: updateCurrentCity(state, action),
     weatherList: updateWetherList(state, action),
     temperatureType: updateTemperatureType(state, action)
-  }
+  };
 };
 
 export default reducer;

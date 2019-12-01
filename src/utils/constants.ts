@@ -5,4 +5,3 @@ export const currentCityConstant: ICity = {
   country: 'Israel',
   administrative: 'Tel Aviv'
 };
-

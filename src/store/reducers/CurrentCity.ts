@@ -5,15 +5,15 @@ const updateCurrentCity = (state: any, action: any): ICity => {
   if (!state) {
     return {
       ...currentCityConstant
-    }
-  };
-  switch(action.type) {
+    };
+  }
+  switch (action.type) {
     case 'CITY_UPDATED':
       return action.payload;
     case 'CITY_FAVOURITES_UPDATED':
       return action.payload;
     default:
-      return state.currentCity
+      return state.currentCity;
   }
 };
 
