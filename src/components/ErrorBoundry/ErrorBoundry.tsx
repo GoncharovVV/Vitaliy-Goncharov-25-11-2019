@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import './ErrorBoundry.scss';
 import { ReactComponent as Cloudy } from '../../assets/icons/cloudy.svg';
+import './ErrorBoundry.scss';
 export interface ErrorBoundryProps {}
 
 export interface ErrorBoundryState {
-  hasError: boolean
+  hasError: boolean;
 }
 
 class ErrorBoundry extends Component<ErrorBoundryProps, ErrorBoundryState> {
@@ -15,18 +15,18 @@ class ErrorBoundry extends Component<ErrorBoundryProps, ErrorBoundryState> {
     this.setState({
       hasError: true
     });
-  };
+  }
   render() {
     if (this.state.hasError) {
       return (
         <div className="error__holder">
           <div className="error__icon">
-            <Cloudy className="svg-icon"/>
+            <Cloudy className="svg-icon" />
           </div>
           Something wrong!
           <strong>Please try later</strong>
         </div>
-      )
+      );
     }
 
     return this.props.children;

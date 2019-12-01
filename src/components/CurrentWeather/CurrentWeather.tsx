@@ -1,12 +1,12 @@
-import React, { useContext, useState, useEffect } from 'react';
-import './CurrentWeather.scss'
-import { IWeather } from '../../utils/types';
+import React, { useContext, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { WeatherServiceContex } from '../WeatherServiceContext';
-import Spinner from '../Spinner/indexs';
 import { toast } from 'react-toastify';
+import { IWeather } from '../../utils/types';
+import Spinner from '../Spinner/indexs';
+import { WeatherServiceContex } from '../WeatherServiceContext';
+import './CurrentWeather.scss';
 export interface CurrentWeatherProps {
-  cityId: any
+  cityId: any;
 }
 
 const CurrentWeather: React.FC<CurrentWeatherProps> = ({ cityId }) => {
@@ -19,30 +19,36 @@ const CurrentWeather: React.FC<CurrentWeatherProps> = ({ cityId }) => {
   useEffect(() => {
     if (cityId) {
       setLoading(true);
-      // getWeather(cityId).then(({ icon, temperatureImp, temperatureMetr, type }:IWeather) => {
-      //   const imgUrl = getWeatherIcon(icon);
-      //   setImgUrl(imgUrl);
-      //   setType(type);
-      //   setTemperatureImp(temperatureImp);
-      //   setTemperatureMetr(temperatureMetr);
-      //   setLoading(false);
-      // }).catch((err:any) => {toast.warn(`Something is wrong ${err}`)});
+      getWeather(cityId)
+        .then(({ icon, temperatureImp, temperatureMetr, type }: IWeather) => {
+          const imgUrl = getWeatherIcon(icon);
+          setImgUrl(imgUrl);
+          setType(type);
+          setTemperatureImp(temperatureImp);
+          setTemperatureMetr(temperatureMetr);
+          setLoading(false);
+        })
+        .catch((err: any) => {
+          toast.warn(`Something is wrong ${err}`);
+        });
     }
-  },[cityId, getWeather, getWeatherIcon])
+  }, [cityId, getWeather, getWeatherIcon]);
   return (
     <div className="current-weather">
-      {
-        loading ?
-        <Spinner /> :
+      {loading ? (
+        <Spinner />
+      ) : (
         <>
-          <img className="card-item__image" src={imgUrl} alt={type}/>
+          <img className="card-item__image" src={imgUrl} alt={type} />
           <p className="main__type">{type}</p>
-          <p className="main__temp">{temperatureImp} / {temperatureMetr}</p>
+          <p className="main__temp">
+            {temperatureImp} / {temperatureMetr}
+          </p>
         </>
-      }
+      )}
     </div>
   );
-}
+};
 const mapStateToProps = (state: any) => {
   return {
     cityId: state.currentCity.id

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import CurrentWeather from '../../components/CurrentWeather';
 import Search from '../../components/Search';
 import ToggleFavourites from '../../components/ToggleFavourites';
+import ToggleTemperature from '../../components/ToggleTemperature';
 import WeatherList from '../../components/WeatherList';
 import './Home.scss';
 export interface HomeProps {
@@ -12,6 +13,7 @@ export interface HomeProps {
 const Home: React.FC<HomeProps> = ({ title }) => {
   return (
     <section className="container">
+      <ToggleTemperature />
       <Search />
       <div className="city-weather__container">
         <h1 className="title">{title}</h1>

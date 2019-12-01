@@ -12,6 +12,6 @@ const Spinner: React.FC<SpinnerProps> = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Spinner;

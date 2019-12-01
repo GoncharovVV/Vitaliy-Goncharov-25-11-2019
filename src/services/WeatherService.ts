@@ -1,15 +1,8 @@
-import {
-  ICity,
-  IWeather
-} from '../utils/types';
+import { ICity, IWeather } from '../utils/types';
 
-import {
-  ICitiesResponce,
-} from './types';
+import { ICitiesResponce } from './types';
 
 import { transformTemp } from '../utils/helper';
-
-import { Cities, weatherFewDays } from '../dummyData';
 
 export default class WeatherService {
   _urlApiBase = 'https://dataservice.accuweather.com/';
@@ -30,36 +23,25 @@ export default class WeatherService {
   };
 
   getCities = async (query: string): Promise<Array<ICity>> => {
-    // const res = await this.getResource(`locations/v1/cities/autocomplete?apikey=${this._apiKey}&q=${query}`);
-    // return this._transformCities(res);
-    let promise = new Promise<Array<ICity>>((resolve, reject) => {
-      setTimeout(() => resolve(Cities), 1000)
-    });
-
-    let result = await promise;
-    return result; // MOCKDATA -> remove
+    const res = await this.getResource(
+      `locations/v1/cities/autocomplete?apikey=${this._apiKey}&q=${query}`
+    );
+    return this._transformCities(res);
   };
 
   getWeatherFevDays = async (cityKey: number): Promise<Array<IWeather>> => {
-    // const res = await this.getResource(`forecasts/v1/daily/5day/${cityKey}?apikey=${this._apiKey}`);
-    // return this._transformWeatherFevDays(res.DailyForecasts);
-    let promise = new Promise<Array<IWeather>>((resolve, reject) => {
-      setTimeout(() => resolve(weatherFewDays), 1000)
-    });
-
-    let result = await promise;
-    return result; // MOCKDATA -> remove
+    const res = await this.getResource(`forecasts/v1/daily/5day/${cityKey}?apikey=${this._apiKey}`);
+    return this._transformWeatherFevDays(res.DailyForecasts);
   };
 
   getWeatherIcon = (id: number) => {
     const imgId = this._transformImgId(id);
-
     return `https://developer.accuweather.com/sites/default/files/${imgId}-s.png`;
   };
 
   _transformImgId = (id: number): number | string => {
     return id.toString().length > 1 ? id : `0${id}`;
-  }
+  };
 
   _transformCities = (citiesArr: Array<ICitiesResponce>): Array<ICity> => {
     return citiesArr.map(({ Key, LocalizedName, Country, AdministrativeArea }) => ({
@@ -70,12 +52,8 @@ export default class WeatherService {
     }));
   };
 
-  _transformWeatherSingle = ( weatherArr: Array<any> ): IWeather => {
-    const {
-      WeatherIcon,
-      WeatherText,
-      Temperature
-    } = weatherArr[0];
+  _transformWeatherSingle = (weatherArr: Array<any>): IWeather => {
+    const { WeatherIcon, WeatherText, Temperature } = weatherArr[0];
     const { Metric, Imperial } = Temperature;
     return {
       type: WeatherText,
@@ -89,8 +67,11 @@ export default class WeatherService {
     return weatherArr.map((item, idx: number) => ({
       id: `lw${idx}`,
       date: item.Date,
-      temperatureImp: `${item.Temperature.Minimum.Value} ${item.Temperature.Minimum.Unit}` ,
-      temperatureMetr: `${transformTemp(item.Temperature.Minimum.Value, item.Temperature.Minimum.Unit)} C`,
+      temperatureImp: `${item.Temperature.Minimum.Value} ${item.Temperature.Minimum.Unit}`,
+      temperatureMetr: `${transformTemp(
+        item.Temperature.Minimum.Value,
+        item.Temperature.Minimum.Unit
+      )} C`,
       type: item.Day.IconPhrase,
       icon: item.Day.Icon
     }));

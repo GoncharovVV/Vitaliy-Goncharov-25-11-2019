@@ -1,0 +1,25 @@
+@import '../../scss/mixin', '../../scss/variables';
+.toggle-temperature {
+  border: $border-white;
+  border-radius: 8px;
+  @include flex($flex: inline-flex, $align: flex-start);
+  overflow: hidden;
+  button {
+    color: $white;
+    padding: 3px 5px;
+    background-color: transparent;
+    transition: background-color .3s;
+    @include min-screen(1024px) {
+      &:hover {
+        background-color: $red;
+      }
+    }
+    &.active {
+      background-color: $red;
+      pointer-events: none;
+    }
+  }
+}
+.toggle-temperature__holder {
+  margin-bottom: 15px;
+}

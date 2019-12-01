@@ -23,7 +23,7 @@ const ToggleFavourites: React.FC<ToggleFavouritesProps> = ({
   const [isFav, setIsFav] = useState(idx > -1);
   const hintClassName = classnames('fav-button', { 'fav-button__active': isFav });
   useEffect(() => {
-    setIsFav((prevSt: boolean) => {
+    setIsFav(() => {
       return idx > -1;
     });
   }, [idx]);

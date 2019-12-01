@@ -8,12 +8,12 @@ import { WeatherServiceContex } from '../WeatherServiceContext';
 import './Search.scss';
 toast.configure({
   autoClose: 2000,
-  draggable: false,
+  draggable: false
 });
 export interface SearchProps {
-  getCities?: any,
-  currentCity?: any,
-  updateCity?: any,
+  getCities?: any;
+  currentCity?: any;
+  updateCity?: any;
 }
 
 const Search: React.FC<SearchProps> = ({ currentCity, updateCity }) => {
@@ -31,12 +31,16 @@ const Search: React.FC<SearchProps> = ({ currentCity, updateCity }) => {
 
   const onSearch = (query: string) => {
     setisLoading(true);
-    getCities(query).then((res: Array<ICity>) => {
-      setisLoading(false);
-      setOptions(() => {
-        return res;
+    getCities(query)
+      .then((res: Array<ICity>) => {
+        setisLoading(false);
+        setOptions(() => {
+          return res;
+        });
+      })
+      .catch((err: any) => {
+        toast.warn(`Something is wrong ${err}`);
       });
-    }).catch((err:any) => {toast.warn(`Something is wrong ${err}`)});
   };
 
   const getLabelKey = (option: ICity) =>

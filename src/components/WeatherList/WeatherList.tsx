@@ -1,15 +1,11 @@
 import React, { useContext } from 'react';
 import { connect } from 'react-redux';
-import {
-  fetchWeatherList,
-  onErrorWeatherList,
-  updateWeatherList
-} from '../../store/actions/weatherListActions';
+import { toast } from 'react-toastify';
+import { fetchWeatherList, onErrorWeatherList, updateWeatherList } from '../../store/actions/weatherListActions';
 import { IWeather } from '../../utils/types';
 import Spinner from '../Spinner/indexs';
 import WeatherItem from '../WeatherItem';
 import { WeatherServiceContex } from '../WeatherServiceContext';
-import { toast } from 'react-toastify';
 toast.configure({
   autoClose: 2000,
   draggable: false

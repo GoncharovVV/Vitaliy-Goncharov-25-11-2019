@@ -1,9 +1,7 @@
 import React from 'react';
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 import './Header.scss';
-export interface HeaderProps {
-
-}
+export interface HeaderProps {}
 
 const Header: React.FC<HeaderProps> = () => {
   return (
@@ -25,6 +23,6 @@ const Header: React.FC<HeaderProps> = () => {
       </nav>
     </header>
   );
-}
+};
 
 export default Header;
