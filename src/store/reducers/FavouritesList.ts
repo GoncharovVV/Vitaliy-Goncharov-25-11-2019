@@ -1,4 +1,22 @@
 import { favouritesList } from '../../dummyData';
+import { findCityInFav } from '../../utils/helper';
+const toggleFavList = (items: any, city: any):any => {
+  const idx = findCityInFav(city.id, items);
+  if ( idx > -1) {
+    return [
+      ...items.slice(0, idx),
+      ...items.slice(idx + 1)
+    ]
+  }
+  else {
+    return [
+      ...items,
+      city
+    ]
+  }
+  return items;
+};
+
 const updateFavouritesList = (state: any, action: any) => {
   if (!state) {
     return {
@@ -6,9 +24,9 @@ const updateFavouritesList = (state: any, action: any) => {
     }
   };
   switch(action.type) {
-    case 'FAVOURITES_LIST_UPDATED':
+    case 'CITY_TOGGLE_TO_FAV':
       return {
-        items: action.payload,
+        items: toggleFavList(state.favouritesList.items, action.payload),
       }
     default:
       return state.favouritesList;

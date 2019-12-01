@@ -7,12 +7,19 @@ export interface FavouritesListProps {
 }
 
 const FavouritesList: React.SFC<FavouritesListProps> = ({ favouritesList }) => {
+  const FavList = () => {
+    return (
+      favouritesList.items.map((favItem:any) => {
+        return <FavouritesItem {...favItem} key={favItem.id}/>
+      })
+    )
+  }
   return (
     <ul className="cards">
       {
-        favouritesList.items.map((favItem:any) => {
-          return <FavouritesItem {...favItem} key={favItem.id}/>
-        })
+        favouritesList.items.length > 0 ?
+        <FavList /> :
+        <p className="empty">There is nothing to show</p>
       }
     </ul>
   );

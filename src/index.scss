@@ -125,6 +125,7 @@ body {
   border-radius: 5px;
   padding: 10px;
   width: 100%;
+  color: $white;
   background-color: #4ef1ff14;
   transform: translateZ(0);
   transition: box-shadow .3s;
@@ -162,4 +163,15 @@ body {
 .card-item__temp {
   font-size: $fosLg;
   font-weight: 600;
+}
+.title {
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+.empty {
+  display: block;
+  text-align: center;
+  width: 100%;
 }

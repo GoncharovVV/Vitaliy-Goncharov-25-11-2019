@@ -1,6 +1,6 @@
 @import '../../scss/mixin', '../../scss/variables';
 .fav-button {
-  color: $blue;
+  color: $white;
   font-size: 4rem;
   transition: color .3s;
   position: relative;
@@ -14,10 +14,23 @@
       }
     }
   }
+  &.fav-button__active  {
+    color: $red;
+    @include min-screen(1024px) {
+      &:hover {
+        color: $white;
+        .tooltip {
+          opacity: 1;
+          visibility: visible;
+          transform: translate(-10px, -50%);
+        }
+      }
+    }
+  }
 }
 .tooltip {
   font-size: $fosSm;
-  color: $grey;
+  color: $white;
   position: absolute;
   right: 100%;
   top: 50%;

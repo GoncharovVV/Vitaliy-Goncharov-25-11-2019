@@ -31,7 +31,6 @@ const FavouritesItem: React.FC<FavouritesItemProps> = ({
 
   React.useEffect(() => {
     if (id) {
-      // getWeatherIcon(icon)
       // getWeather(id).then(({ icon, temperatureImp, temperatureMetr, type }:IWeather) => {
       //   const imgUrl = getWeatherIcon(icon);
       //   setImgUrl(imgUrl);
