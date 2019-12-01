@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 
 import { formatDate } from '../../utils/helper';
 import { connect } from 'react-redux';
+import Spinner from '../Spinner/indexs';
 export interface FavouritesItemProps extends ICity {
   updateCity?: any,
 }
@@ -28,10 +29,11 @@ const FavouritesItem: React.FC<FavouritesItemProps> = ({
   const [type, setType] = useState('-');
   const [temperatureImp, setTemperatureImp] = useState('-');
   const [temperatureMetr, setTemperatureMetr] = useState('-');
-
+  const [isLoading, setIsLoading] = useState(true);
   React.useEffect(() => {
     if (id) {
       // getWeather(id).then(({ icon, temperatureImp, temperatureMetr, type }:IWeather) => {
+      //   setIsLoading(false);
       //   const imgUrl = getWeatherIcon(icon);
       //   setImgUrl(imgUrl);
       //   setType(type);
@@ -49,11 +51,17 @@ const FavouritesItem: React.FC<FavouritesItemProps> = ({
     <li className="card-item">
       <button className="card-item__content" onClick={onClick}>
         <p className="card-item__date">{localizedName}</p>
-        {/* <img src={imgUrl} className="card-item__image" alt="type" />
-        <h3 className="card-item__title">{type}</h3>
-        <div className="card-item__temp">
-          {temperatureImp} / {temperatureMetr}
-        </div> */}
+        {
+          isLoading ?
+          <Spinner /> :
+          <>
+            {/* <img src={imgUrl} className="card-item__image" alt="type" />
+            <h3 className="card-item__title">{type}</h3>
+            <div className="card-item__temp">
+              {temperatureImp} / {temperatureMetr}
+            </div> */}
+          </>
+        }
       </button>
     </li>
   );
