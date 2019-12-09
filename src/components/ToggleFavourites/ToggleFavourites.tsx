@@ -6,6 +6,7 @@ import { ReactComponent as Heart } from '../../assets/icons/heart.svg';
 import { toggleCityToFav } from '../../store/actions/favActions';
 import { findCityInFav } from '../../utils/helper';
 import './ToggleFavourites.scss';
+import { currentCity, favouritesList } from '../../utils/stateConstants';
 
 export interface ToggleFavouritesProps {
   currentCity: any;
@@ -41,8 +42,8 @@ const ToggleFavourites: React.FC<ToggleFavouritesProps> = ({
 };
 const mapStateToProps = (state: any) => {
   return {
-    currentCity: state.currentCity,
-    favouritesList: state.favouritesList
+    currentCity: state[currentCity],
+    favouritesList: state[favouritesList]
   };
 };
 

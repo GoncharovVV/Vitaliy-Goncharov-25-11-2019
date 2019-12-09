@@ -1,10 +1,11 @@
 import { format } from 'date-fns';
+import { temperatureTypeF, temperatureTypeС } from './constants';
 
 export const transformTemp = (tempVal: number, tempUtil: string): string => {
   switch (tempUtil) {
-    case 'F':
+    case temperatureTypeF:
       return (((tempVal - 32) * 5) / 9).toFixed().toString();
-    case 'C':
+    case temperatureTypeС:
       return ((tempVal * 9) / 5 + 32).toFixed().toString();
     default:
       return `${tempVal} ${tempUtil}`;

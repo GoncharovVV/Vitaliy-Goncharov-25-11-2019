@@ -5,6 +5,8 @@ import { IWeather } from '../../utils/types';
 import Spinner from '../Spinner/indexs';
 import { WeatherServiceContex } from '../WeatherServiceContext';
 import './CurrentWeather.scss';
+import { currCityId, temperatureType } from '../../utils/stateConstants';
+import { temperatureTypeF } from '../../utils/constants';
 export interface CurrentWeatherProps {
   cityId: any;
   temperatureType: string;
@@ -43,7 +45,7 @@ const CurrentWeather: React.FC<CurrentWeatherProps> = ({ cityId, temperatureType
           <img className="card-item__image" src={imgUrl} alt={type} />
           <p className="main__type">{type}</p>
           <p className="main__temp">
-            {temperatureType === 'F' ? <> {temperatureImp} </> : <> {temperatureMetr} </>}
+            {temperatureType === temperatureTypeF ? <> {temperatureImp} </> : <> {temperatureMetr} </>}
           </p>
         </>
       )}
@@ -52,8 +54,8 @@ const CurrentWeather: React.FC<CurrentWeatherProps> = ({ cityId, temperatureType
 };
 const mapStateToProps = (state: any) => {
   return {
-    cityId: state.currentCity.id,
-    temperatureType: state.temperatureType
+    cityId: state[currCityId],
+    temperatureType: state[temperatureType]
   };
 };
 

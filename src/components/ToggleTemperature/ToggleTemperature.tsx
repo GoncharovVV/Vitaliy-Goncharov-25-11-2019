@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { setTemperatureIMP, setTemperatureMETR } from '../../store/actions/actions';
 import './ToggleTemperature.scss';
+import { temperatureType } from '../../utils/stateConstants';
+import { temperatureTypeF, temperatureTypeС } from '../../utils/constants';
 
 export interface ToggleTemperatureProps {
   setTemperatureIMP: any;
@@ -15,7 +17,7 @@ const ToggleTemperature: React.SFC<ToggleTemperatureProps> = ({
   setTemperatureMETR
 }) => {
   const onclick = () => {
-    if (temperatureType === 'F') setTemperatureMETR();
+    if (temperatureType === temperatureTypeF) setTemperatureMETR();
     else {
       setTemperatureIMP();
     }
@@ -23,10 +25,10 @@ const ToggleTemperature: React.SFC<ToggleTemperatureProps> = ({
   return (
     <div className="toggle-temperature__holder">
       <div className="toggle-temperature">
-        <button onClick={onclick} className={temperatureType === 'F' ? 'active' : 'imp'}>
+        <button onClick={onclick} className={temperatureType === temperatureTypeF ? 'active' : 'imp'}>
           F
         </button>
-        <button onClick={onclick} className={temperatureType === 'C' ? 'active' : 'metr'}>
+        <button onClick={onclick} className={temperatureType === temperatureTypeС ? 'active' : 'metr'}>
           C
         </button>
       </div>
@@ -35,7 +37,7 @@ const ToggleTemperature: React.SFC<ToggleTemperatureProps> = ({
 };
 const mapStateToProps = (state: any) => {
   return {
-    temperatureType: state.temperatureType
+    temperatureType: state[temperatureType]
   };
 };
 
