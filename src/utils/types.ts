@@ -24,11 +24,13 @@ export interface ICityItems {
 export interface IFavList {
   favouritesList: ICityItems;
 };
+
 export interface IWeatherList {
   error: boolean,
   isLoading: boolean,
   items: [] | IWeather
-}
+};
+
 export interface IState extends IFavList {
   currentCity: ICity,
   temperatureType: string,

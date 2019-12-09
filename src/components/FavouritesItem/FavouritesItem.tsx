@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { updateCity } from '../../store/actions/cityActions';
-import { ICity, IWeather } from '../../utils/types';
+import { IUpdateCity } from '../../store/actions/types';
+import { temperatureTypeF } from '../../utils/constants';
+import { ICity, IWeather, IState } from '../../utils/types';
 import Spinner from '../Spinner/indexs';
 import { WeatherServiceContex } from '../WeatherServiceContext';
-import { temperatureTypeF } from '../../utils/constants';
 export interface FavouritesItemProps extends ICity {
-  updateCity?: any;
+  updateCity: IUpdateCity;
   temperatureType: string;
-  st: any
 }
 toast.configure({
   autoClose: 2000,
@@ -22,17 +22,15 @@ const FavouritesItem: React.FC<FavouritesItemProps> = ({
   country,
   administrative,
   updateCity,
-  temperatureType,
-  st
+  temperatureType
 }) => {
-  console.log(st);
   const history = useHistory();
   const { getWeather, getWeatherIcon } = useContext(WeatherServiceContex);
-  const [imgUrl, setImgUrl] = useState('');
-  const [type, setType] = useState('-');
-  const [temperatureImp, setTemperatureImp] = useState('-');
-  const [temperatureMetr, setTemperatureMetr] = useState('-');
-  const [isLoading, setIsLoading] = useState(true);
+  const [imgUrl, setImgUrl] = useState<string>('');
+  const [type, setType] = useState<string>('-');
+  const [temperatureImp, setTemperatureImp] = useState<string>('-');
+  const [temperatureMetr, setTemperatureMetr] = useState<string>('-');
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   React.useEffect(() => {
     if (id) {
       getWeather(id)
@@ -64,7 +62,11 @@ const FavouritesItem: React.FC<FavouritesItemProps> = ({
             <img src={imgUrl} className="card-item__image" alt="type" />
             <h3 className="card-item__title">{type}</h3>
             <div className="card-item__temp">
-              {temperatureType === temperatureTypeF ? <> {temperatureImp} </> : <> {temperatureMetr} </>}
+              {temperatureType === temperatureTypeF ? (
+                <> {temperatureImp} </>
+              ) : (
+                <> {temperatureMetr} </>
+              )}
             </div>
           </>
         )}
@@ -72,11 +74,10 @@ const FavouritesItem: React.FC<FavouritesItemProps> = ({
     </li>
   );
 };
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: IState) => {
   return {
     currentCity: state.currentCity,
-    temperatureType: state.temperatureType,
-    st: state
+    temperatureType: state.temperatureType
   };
 };
 const mapDispatchToProps = {

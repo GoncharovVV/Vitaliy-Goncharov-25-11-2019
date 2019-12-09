@@ -3,7 +3,8 @@ import { AsyncTypeahead } from 'react-bootstrap-typeahead';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 import { updateCity } from '../../store/actions/cityActions';
-import { ICity } from '../../utils/types';
+import { IUpdateCity } from '../../store/actions/types';
+import { ICity, IState } from '../../utils/types';
 import { WeatherServiceContex } from '../WeatherServiceContext';
 import './Search.scss';
 toast.configure({
@@ -12,8 +13,8 @@ toast.configure({
 });
 export interface SearchProps {
   getCities?: any;
-  currentCity?: any;
-  updateCity?: any;
+  currentCity: ICity;
+  updateCity: IUpdateCity;
 }
 
 const Search: React.FC<SearchProps> = ({ currentCity, updateCity }) => {
@@ -65,7 +66,7 @@ Search.defaultProps = {
   getCities: () => {}
 };
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: IState) => {
   return {
     currentCity: state.currentCity
   };

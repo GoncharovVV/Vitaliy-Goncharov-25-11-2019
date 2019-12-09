@@ -7,6 +7,7 @@ import { IWeather, ICity } from '../../utils/types';
 import Spinner from '../Spinner/indexs';
 import WeatherItem from '../WeatherItem';
 import { WeatherServiceContex } from '../WeatherServiceContext';
+import { IActionUpdateWeatherList, IActionFetchWeatherList, IActionOnErrorWeatherList } from '../../store/actions/types';
 toast.configure({
   autoClose: 2000,
   draggable: false
@@ -15,9 +16,9 @@ export interface WeatherListProps {
   currentCity: ICity;
   isLoading: boolean;
   weatherItemsList: Array<IWeather>;
-  updateWeatherList: any;
-  fetchWeatherList: any;
-  onErrorWeatherList: any;
+  updateWeatherList: IActionUpdateWeatherList;
+  fetchWeatherList: IActionFetchWeatherList;
+  onErrorWeatherList: IActionOnErrorWeatherList;
   weatherItemsError: boolean;
   temperatureType: string;
 }
@@ -65,7 +66,6 @@ const mapStateToProps = (state: any) => {
     weatherItemsList: state.weatherList.items,
     weatherItemsError: state.weatherList.error,
     temperatureType: state.temperatureType,
-    st: state
   };
 };
 

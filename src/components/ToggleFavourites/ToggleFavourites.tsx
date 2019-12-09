@@ -4,13 +4,14 @@ import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 import { ReactComponent as Heart } from '../../assets/icons/heart.svg';
 import { toggleCityToFav } from '../../store/actions/favActions';
+import { IToggleFav } from '../../store/actions/types';
 import { findCityInFav } from '../../utils/helper';
+import { ICity, IFavList, IState } from '../../utils/types';
 import './ToggleFavourites.scss';
-import { IFavList } from '../../utils/types';
 
 export interface ToggleFavouritesProps extends IFavList {
-  currentCity: any;
-  toggleCityToFav: any;
+  currentCity: ICity;
+  toggleCityToFav: IToggleFav;
 }
 
 const ToggleFavourites: React.FC<ToggleFavouritesProps> = ({
@@ -39,7 +40,7 @@ const ToggleFavourites: React.FC<ToggleFavouritesProps> = ({
     </button>
   );
 };
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: IState) => {
   return {
     currentCity: state.currentCity,
     favouritesList: state.favouritesList

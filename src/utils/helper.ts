@@ -1,5 +1,6 @@
 import { format } from 'date-fns';
 import { temperatureTypeF, temperatureTypeС } from './constants';
+import { ICity } from './types';
 
 export const transformTemp = (tempVal: number, tempUtil: string): string => {
   switch (tempUtil) {
@@ -19,7 +20,7 @@ export const formatDate = (dateVal: string | undefined) => {
   return 'There is no date';
 };
 
-export const findCityInFav = (id: string, arr: Array<any>): number => {
+export const findCityInFav = (id: string, arr: Array<ICity>): number => {
   const idx = arr.findIndex((item: any) => item.id === id);
   return idx;
 };

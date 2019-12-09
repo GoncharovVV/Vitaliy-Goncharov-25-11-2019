@@ -1,11 +1,12 @@
 import { TEMPERATURE_TYPE_IMP, TEMPERATURE_TYPE_METR } from "../../utils/actionConstants";
-import { ITempAction } from "./types";
+import { ISetTemperature } from "./types";
+import { temperatureTypeF, temperatureTypeС } from "../../utils/constants";
 
-export const setTemperatureIMP = (temp:string):ITempAction => ({
+export const setTemperatureIMP:ISetTemperature = () => ({
   type: TEMPERATURE_TYPE_IMP,
-  payload: temp
+  payload: temperatureTypeF
 });
-export const setTemperatureMETR = (temp:string):ITempAction => ({
+export const setTemperatureMETR:ISetTemperature = () => ({
   type: TEMPERATURE_TYPE_METR,
-  payload: temp
+  payload: temperatureTypeС
 });

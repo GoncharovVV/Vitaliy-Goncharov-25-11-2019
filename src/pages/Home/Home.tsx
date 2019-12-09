@@ -6,6 +6,7 @@ import ToggleFavourites from '../../components/ToggleFavourites';
 import ToggleTemperature from '../../components/ToggleTemperature';
 import WeatherList from '../../components/WeatherList';
 import './Home.scss';
+import { IState } from '../../utils/types';
 export interface HomeProps {
   title: string;
 }
@@ -26,7 +27,7 @@ const Home: React.FC<HomeProps> = ({ title }) => {
     </section>
   );
 };
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: IState) => {
   return {
     title: state.currentCity.localizedName
   };

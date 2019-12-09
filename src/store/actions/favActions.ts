@@ -1,8 +1,7 @@
 import { CITY_TOGGLE_TO_FAV } from "../../utils/actionConstants";
-import { IFavActions } from "./types";
-import { ICity } from '../../utils/types';
+import { IToggleFav } from "./types";
 
-export const toggleCityToFav = (city:ICity):IFavActions => ({
+export const toggleCityToFav:IToggleFav = (city) => ({
   type: CITY_TOGGLE_TO_FAV,
   payload: city
 });

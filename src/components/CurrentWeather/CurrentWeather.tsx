@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
-import { IWeather } from '../../utils/types';
+import { temperatureTypeF } from '../../utils/constants';
+import { IWeather, IState } from '../../utils/types';
 import Spinner from '../Spinner/indexs';
 import { WeatherServiceContex } from '../WeatherServiceContext';
 import './CurrentWeather.scss';
 
-import { temperatureTypeF } from '../../utils/constants';
 export interface CurrentWeatherProps {
   cityId: string;
   temperatureType: string;
@@ -54,9 +54,9 @@ const CurrentWeather: React.FC<CurrentWeatherProps> = ({ cityId, temperatureType
         </>
       )}
     </div>
-  );
+  ); 
 };
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: IState) => {
   return {
     cityId: state.currentCity.id,
     temperatureType: state.temperatureType

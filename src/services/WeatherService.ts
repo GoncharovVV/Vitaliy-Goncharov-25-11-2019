@@ -17,7 +17,7 @@ export default class WeatherService {
     return await res.json();
   };
 
-  getWeather = async (cityKey: number) => {
+  getWeather = async (cityKey: number): Promise<IWeather> => {
     const res = await this.getResource(`currentconditions/v1/${cityKey}?apikey=${this._apiKey}`);
     return this._transformWeatherSingle(res);
   };
@@ -34,7 +34,7 @@ export default class WeatherService {
     return this._transformWeatherFevDays(res.DailyForecasts);
   };
 
-  getWeatherIcon = (id: number) => {
+  getWeatherIcon = (id: number): string => {
     const imgId = this._transformImgId(id);
     return `https://developer.accuweather.com/sites/default/files/${imgId}-s.png`;
   };

@@ -1,19 +1,18 @@
 import { FETCH_WEATHER_LIST_FAILURE, FETCH_WEATHER_LIST_REQUEST, FETCH_WEATHER_LIST_SUCCESS } from "../../utils/actionConstants";
-import { IWeather } from "../../utils/types";
-import { IErrorWeatherList, IFetchWeatherList, IUpdateWeatherList } from "./types";
+import { IActionUpdateWeatherList, IActionFetchWeatherList, IActionOnErrorWeatherList } from "./types";
 
-export const updateWeatherList = (weatherList:Array<IWeather>):IUpdateWeatherList => {
+export const updateWeatherList:IActionUpdateWeatherList = (weatherList) => {
   return {
     type: FETCH_WEATHER_LIST_SUCCESS,
     payload: weatherList
   }
 };
-export const fetchWeatherList = ():IFetchWeatherList => {
+export const fetchWeatherList:IActionFetchWeatherList = () => {
   return {
     type: FETCH_WEATHER_LIST_REQUEST,
   }
 };
-export const onErrorWeatherList = ():IErrorWeatherList => {
+export const onErrorWeatherList:IActionOnErrorWeatherList = () => {
   return {
     type: FETCH_WEATHER_LIST_FAILURE,
     payload: []

@@ -2,11 +2,15 @@ import { TEMPERATURE_TYPE_IMP, TEMPERATURE_TYPE_METR } from "../../utils/actionC
 import { temperatureTypeF, temperatureTypeС } from "../../utils/constants";
 import { IState } from "../../utils/types";
 
-const updateTemperatureType = (state: IState, action: any): string => {
+interface IAction {
+  type: string,
+};
+
+const updateTemperatureType = (state: IState, { type }: IAction): string => {
   if (!state) {
     return temperatureTypeF;
   }
-  switch (action.type) {
+  switch (type) {
     case TEMPERATURE_TYPE_IMP:
       return temperatureTypeF;
     case TEMPERATURE_TYPE_METR:

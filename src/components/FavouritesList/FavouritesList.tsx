@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { ICity, IFavList, IState } from '../../utils/types';
 import FavouritesItem from '../FavouritesItem';
-import { ICity, IFavList } from '../../utils/types';
 
 export interface FavouritesListProps extends IFavList {}
 
@@ -18,7 +18,7 @@ const FavouritesList: React.SFC<FavouritesListProps> = ({ favouritesList }) => {
     </ul>
   );
 };
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: IState) => {
   return {
     favouritesList: state.favouritesList
   };
