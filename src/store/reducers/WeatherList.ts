@@ -1,7 +1,7 @@
 import { FETCH_WEATHER_LIST_SUCCESS, FETCH_WEATHER_LIST_REQUEST, FETCH_WEATHER_LIST_FAILURE } from "../../utils/actionConstants";
-import { IReducerUpdateWeatherList } from "./types";
+import { IState, IWeatherList } from "../../utils/types";
 
-const updateWetherList = (state: any, action: any): IReducerUpdateWeatherList => {
+const updateWetherList = (state: IState, action: any): IWeatherList => {
   if (!state) {
     return {
       items: [],

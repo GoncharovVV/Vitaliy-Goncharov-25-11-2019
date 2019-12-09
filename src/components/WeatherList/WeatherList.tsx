@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 import { fetchWeatherList, onErrorWeatherList, updateWeatherList } from '../../store/actions/weatherListActions';
 
-import { IWeather } from '../../utils/types';
+import { IWeather, ICity } from '../../utils/types';
 import Spinner from '../Spinner/indexs';
 import WeatherItem from '../WeatherItem';
 import { WeatherServiceContex } from '../WeatherServiceContext';
@@ -12,7 +12,7 @@ toast.configure({
   draggable: false
 });
 export interface WeatherListProps {
-  currentCity: any;
+  currentCity: ICity;
   isLoading: boolean;
   weatherItemsList: Array<IWeather>;
   updateWeatherList: any;
@@ -29,7 +29,7 @@ const WeatherList: React.FC<WeatherListProps> = ({
   updateWeatherList,
   onErrorWeatherList,
   fetchWeatherList,
-  weatherItemsError
+  weatherItemsError,
 }) => {
   const { getWeatherFevDays } = useContext(WeatherServiceContex);
   React.useEffect(() => {
@@ -64,7 +64,8 @@ const mapStateToProps = (state: any) => {
     isLoading: state.weatherList.isLoading,
     weatherItemsList: state.weatherList.items,
     weatherItemsError: state.weatherList.error,
-    temperatureType: state.temperatureType
+    temperatureType: state.temperatureType,
+    st: state
   };
 };
 

@@ -4,7 +4,7 @@ import ToggleTemperature from '../../components/ToggleTemperature';
 export interface FavoritesProps {}
 
 const Favorites: React.FC<FavoritesProps> = () => {
-  const title = useState('Favourites');
+  const title = useState<string>('Favourites');
   return (
     <section className="container">
       <ToggleTemperature />
@@ -15,5 +15,5 @@ const Favorites: React.FC<FavoritesProps> = () => {
     </section>
   );
 };
-
+ 
 export default Favorites;

@@ -6,10 +6,10 @@ import { ReactComponent as Heart } from '../../assets/icons/heart.svg';
 import { toggleCityToFav } from '../../store/actions/favActions';
 import { findCityInFav } from '../../utils/helper';
 import './ToggleFavourites.scss';
+import { IFavList } from '../../utils/types';
 
-export interface ToggleFavouritesProps {
+export interface ToggleFavouritesProps extends IFavList {
   currentCity: any;
-  favouritesList: any;
   toggleCityToFav: any;
 }
 

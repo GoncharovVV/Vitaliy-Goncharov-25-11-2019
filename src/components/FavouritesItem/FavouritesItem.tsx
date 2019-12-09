@@ -10,6 +10,7 @@ import { temperatureTypeF } from '../../utils/constants';
 export interface FavouritesItemProps extends ICity {
   updateCity?: any;
   temperatureType: string;
+  st: any
 }
 toast.configure({
   autoClose: 2000,
@@ -21,8 +22,10 @@ const FavouritesItem: React.FC<FavouritesItemProps> = ({
   country,
   administrative,
   updateCity,
-  temperatureType
+  temperatureType,
+  st
 }) => {
+  console.log(st);
   const history = useHistory();
   const { getWeather, getWeatherIcon } = useContext(WeatherServiceContex);
   const [imgUrl, setImgUrl] = useState('');
@@ -72,7 +75,8 @@ const FavouritesItem: React.FC<FavouritesItemProps> = ({
 const mapStateToProps = (state: any) => {
   return {
     currentCity: state.currentCity,
-    temperatureType: state.temperatureType
+    temperatureType: state.temperatureType,
+    st: state
   };
 };
 const mapDispatchToProps = {

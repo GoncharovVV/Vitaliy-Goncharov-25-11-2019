@@ -8,7 +8,8 @@ export interface ICity {
 export interface ITemperature {
   temperatureMetr: string,
   temperatureImp: string,
-}
+};
+
 export interface IWeather extends ITemperature {
   id?: string,
   date?: string,
@@ -16,3 +17,20 @@ export interface IWeather extends ITemperature {
   icon: number,
 };
 
+export interface ICityItems {
+  items: Array<ICity>
+};
+
+export interface IFavList {
+  favouritesList: ICityItems;
+};
+export interface IWeatherList {
+  error: boolean,
+  isLoading: boolean,
+  items: [] | IWeather
+}
+export interface IState extends IFavList {
+  currentCity: ICity,
+  temperatureType: string,
+  weatherList: IWeatherList
+};

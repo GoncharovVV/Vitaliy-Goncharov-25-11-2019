@@ -1,5 +1,6 @@
 import { findCityInFav } from '../../utils/helper';
 import { CITY_TOGGLE_TO_FAV } from '../../utils/actionConstants';
+import { IState } from '../../utils/types';
 
 const toggleFavList = (items: any, city: any): any => {
   const idx = findCityInFav(city.id, items);
@@ -10,7 +11,7 @@ const toggleFavList = (items: any, city: any): any => {
   }
 };
 
-const updateFavouritesList = (state: any, action: any) => {
+const updateFavouritesList = (state: IState, action: any) => {
   if (!state) {
     return {
       items: []

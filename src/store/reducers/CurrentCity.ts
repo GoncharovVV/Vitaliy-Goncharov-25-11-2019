@@ -1,8 +1,8 @@
 import { currentCityConstant } from '../../utils/constants';
-import { ICity } from '../../utils/types';
+import { ICity, IState } from '../../utils/types';
 import { CITY_UPDATED, CITY_FAVOURITES_UPDATED } from '../../utils/actionConstants';
 
-const updateCurrentCity = (state: any, action: any): ICity => {
+const updateCurrentCity = (state: IState, action: any): ICity => {
   if (!state) {
     return {
       ...currentCityConstant

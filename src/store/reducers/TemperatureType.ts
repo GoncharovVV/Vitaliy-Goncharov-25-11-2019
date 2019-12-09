@@ -1,7 +1,8 @@
 import { TEMPERATURE_TYPE_IMP, TEMPERATURE_TYPE_METR } from "../../utils/actionConstants";
 import { temperatureTypeF, temperatureTypeС } from "../../utils/constants";
+import { IState } from "../../utils/types";
 
-const updateTemperatureType = (state: any, action: any): string => {
+const updateTemperatureType = (state: IState, action: any): string => {
   if (!state) {
     return temperatureTypeF;
   }
