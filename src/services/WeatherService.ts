@@ -6,7 +6,7 @@ import { transformTemp } from '../utils/helper';
 
 export default class WeatherService {
   _urlApiBase = 'https://dataservice.accuweather.com/';
-  _apiKey = '3LFn48ZIsvE35fIxdeNHAYHzkfEwDu00';
+  _apiKey = 'vzxQaeek1IGlQULqjiMObKjuRfCvhOZC';
 
   getResource = async (url: string): Promise<any> => {
     const res = await fetch(`${this._urlApiBase}${url}`);
