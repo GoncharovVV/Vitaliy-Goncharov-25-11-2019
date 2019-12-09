@@ -5,20 +5,20 @@ import { IWeather } from '../../utils/types';
 import Spinner from '../Spinner/indexs';
 import { WeatherServiceContex } from '../WeatherServiceContext';
 import './CurrentWeather.scss';
- 
+
 import { temperatureTypeF } from '../../utils/constants';
 export interface CurrentWeatherProps {
-  cityId: any;
+  cityId: string;
   temperatureType: string;
 }
 
 const CurrentWeather: React.FC<CurrentWeatherProps> = ({ cityId, temperatureType }) => {
   const { getWeather, getWeatherIcon } = useContext(WeatherServiceContex);
-  const [imgUrl, setImgUrl] = useState('');
-  const [type, setType] = useState('-');
-  const [temperatureImp, setTemperatureImp] = useState('-');
-  const [temperatureMetr, setTemperatureMetr] = useState('-');
-  const [loading, setLoading] = useState(true);
+  const [imgUrl, setImgUrl] = useState<string>('');
+  const [type, setType] = useState<string>('-');
+  const [temperatureImp, setTemperatureImp] = useState<string>('-');
+  const [temperatureMetr, setTemperatureMetr] = useState<string>('-');
+  const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {
     if (cityId) {
       setLoading(true);
@@ -45,7 +45,11 @@ const CurrentWeather: React.FC<CurrentWeatherProps> = ({ cityId, temperatureType
           <img className="card-item__image" src={imgUrl} alt={type} />
           <p className="main__type">{type}</p>
           <p className="main__temp">
-            {temperatureType === temperatureTypeF ? <> {temperatureImp} </> : <> {temperatureMetr} </>}
+            {temperatureType === temperatureTypeF ? (
+              <> {temperatureImp} </>
+            ) : (
+              <> {temperatureMetr} </>
+            )}
           </p>
         </>
       )}

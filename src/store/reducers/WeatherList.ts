@@ -1,6 +1,7 @@
 import { FETCH_WEATHER_LIST_SUCCESS, FETCH_WEATHER_LIST_REQUEST, FETCH_WEATHER_LIST_FAILURE } from "../../utils/actionConstants";
+import { IReducerUpdateWeatherList } from "./types";
 
-const updateWetherList = (state: any, action: any) => {
+const updateWetherList = (state: any, action: any): IReducerUpdateWeatherList => {
   if (!state) {
     return {
       items: [],
@@ -11,8 +12,8 @@ const updateWetherList = (state: any, action: any) => {
   switch (action.type) {
     case FETCH_WEATHER_LIST_SUCCESS:
       return {
-        isLoading: false,
         items: action.payload,
+        isLoading: false,
         error: false
       };
     case FETCH_WEATHER_LIST_REQUEST:
