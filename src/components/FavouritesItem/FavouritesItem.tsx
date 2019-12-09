@@ -6,7 +6,6 @@ import { updateCity } from '../../store/actions/cityActions';
 import { ICity, IWeather } from '../../utils/types';
 import Spinner from '../Spinner/indexs';
 import { WeatherServiceContex } from '../WeatherServiceContext';
-import { currentCity, temperatureType } from '../../utils/stateConstants';
 import { temperatureTypeF } from '../../utils/constants';
 export interface FavouritesItemProps extends ICity {
   updateCity?: any;
@@ -72,8 +71,8 @@ const FavouritesItem: React.FC<FavouritesItemProps> = ({
 };
 const mapStateToProps = (state: any) => {
   return {
-    currentCity: state[currentCity],
-    temperatureType: state[temperatureType]
+    currentCity: state.currentCity,
+    temperatureType: state.temperatureType
   };
 };
 const mapDispatchToProps = {

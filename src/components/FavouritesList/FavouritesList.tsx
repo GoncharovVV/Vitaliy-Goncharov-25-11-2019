@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import FavouritesItem from '../FavouritesItem';
-import { favouritesList } from '../../utils/stateConstants';
 export interface FavouritesListProps {
   favouritesList: any;
 }
@@ -24,7 +23,7 @@ const FavouritesList: React.SFC<FavouritesListProps> = ({ favouritesList }) => {
 };
 const mapStateToProps = (state: any) => {
   return {
-    favouritesList: state[favouritesList]
+    favouritesList: state.favouritesList
   };
 };
 

@@ -6,7 +6,6 @@ import { updateCity } from '../../store/actions/cityActions';
 import { ICity } from '../../utils/types';
 import { WeatherServiceContex } from '../WeatherServiceContext';
 import './Search.scss';
-import { currentCity } from '../../utils/stateConstants';
 toast.configure({
   autoClose: 2000,
   draggable: false
@@ -68,7 +67,7 @@ Search.defaultProps = {
 
 const mapStateToProps = (state: any) => {
   return {
-    currentCity: state[currentCity]
+    currentCity: state.currentCity
   };
 };
 const mapDispatchToProps = {

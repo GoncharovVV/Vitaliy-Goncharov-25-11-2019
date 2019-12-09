@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
 import { fetchWeatherList, onErrorWeatherList, updateWeatherList } from '../../store/actions/weatherListActions';
-import { currentCity, temperatureType, weatherListError, weatherListItems, weatherListLoading } from '../../utils/stateConstants';
+
 import { IWeather } from '../../utils/types';
 import Spinner from '../Spinner/indexs';
 import WeatherItem from '../WeatherItem';
@@ -60,11 +60,11 @@ const WeatherList: React.FC<WeatherListProps> = ({
 };
 const mapStateToProps = (state: any) => {
   return {
-    currentCity: state[currentCity],
-    isLoading: state[weatherListLoading],
-    weatherItemsList: state[weatherListItems],
-    weatherItemsError: state[weatherListError],
-    temperatureType: state[temperatureType]
+    currentCity: state.currentCity,
+    isLoading: state.weatherList.isLoading,
+    weatherItemsList: state.weatherList.items,
+    weatherItemsError: state.weatherList.error,
+    temperatureType: state.temperatureType
   };
 };
 
