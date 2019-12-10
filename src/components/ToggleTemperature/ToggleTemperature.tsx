@@ -1,26 +1,20 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { setTemperatureIMP, setTemperatureMETR } from '../../store/actions/actions';
-import { ISetTemperature } from '../../store/actions/types';
 import { temperatureTypeF, temperatureTypeС } from '../../utils/constants';
 import { IState } from '../../utils/types';
 import './ToggleTemperature.scss';
 
-export interface ToggleTemperatureProps {
-  setTemperatureIMP: ISetTemperature;
-  temperatureType: string;
-  setTemperatureMETR: ISetTemperature;
-}
+export interface ToggleTemperatureProps {}
 
-const ToggleTemperature: React.SFC<ToggleTemperatureProps> = ({
-  setTemperatureIMP,
-  temperatureType,
-  setTemperatureMETR
-}) => {
+const ToggleTemperature: React.SFC<ToggleTemperatureProps> = () => {
+  const temperatureType: string = useSelector((state: IState) => state.temperatureType);
+  const dispatch = useDispatch();
+
   const onclick = () => {
-    if (temperatureType === temperatureTypeF) setTemperatureMETR();
+    if (temperatureType === temperatureTypeF) dispatch(setTemperatureMETR());
     else {
-      setTemperatureIMP();
+      dispatch(setTemperatureIMP());
     }
   };
   return (
@@ -42,14 +36,5 @@ const ToggleTemperature: React.SFC<ToggleTemperatureProps> = ({
     </div>
   );
 };
-const mapStateToProps = (state: IState) => {
-  return {
-    temperatureType: state.temperatureType
-  };
-};
 
-const mapDispatchToProps = {
-  setTemperatureIMP,
-  setTemperatureMETR
-};
-export default connect(mapStateToProps, mapDispatchToProps)(ToggleTemperature);
+export default ToggleTemperature;

@@ -1,24 +1,20 @@
 import classnames from 'classnames';
 import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { ReactComponent as Heart } from '../../assets/icons/heart.svg';
 import { toggleCityToFav } from '../../store/actions/favActions';
-import { IToggleFav } from '../../store/actions/types';
 import { findCityInFav } from '../../utils/helper';
-import { ICity, IFavList, IState } from '../../utils/types';
+import { ICity, ICityItems, IState } from '../../utils/types';
 import './ToggleFavourites.scss';
 
-export interface ToggleFavouritesProps extends IFavList {
-  currentCity: ICity;
-  toggleCityToFav: IToggleFav;
-}
+export interface ToggleFavouritesProps {}
 
-const ToggleFavourites: React.FC<ToggleFavouritesProps> = ({
-  currentCity,
-  favouritesList,
-  toggleCityToFav
-}) => {
+const ToggleFavourites: React.FC<ToggleFavouritesProps> = () => {
+  const currentCity: ICity = useSelector((state: IState) => state.currentCity);
+  const favouritesList: ICityItems = useSelector((state: IState) => state.favouritesList);
+  const dispatch = useDispatch();
+
   const { id } = currentCity;
   const idx = findCityInFav(id, favouritesList.items);
   const [isFav, setIsFav] = useState(idx > -1);
@@ -30,7 +26,7 @@ const ToggleFavourites: React.FC<ToggleFavouritesProps> = ({
   }, [idx]);
 
   const onClick = () => {
-    toggleCityToFav(currentCity);
+    dispatch(toggleCityToFav(currentCity));
     toast.success('Favourites updated!');
   };
   return (
@@ -40,14 +36,4 @@ const ToggleFavourites: React.FC<ToggleFavouritesProps> = ({
     </button>
   );
 };
-const mapStateToProps = (state: IState) => {
-  return {
-    currentCity: state.currentCity,
-    favouritesList: state.favouritesList
-  };
-};
-
-const mapDispatchToProps = {
-  toggleCityToFav
-};
-export default connect(mapStateToProps, mapDispatchToProps)(ToggleFavourites);
+export default ToggleFavourites;

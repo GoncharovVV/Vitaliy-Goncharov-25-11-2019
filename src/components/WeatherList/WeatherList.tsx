@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { connect } from 'react-redux';
+import { connect, useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { fetchWeatherList, onErrorWeatherList, updateWeatherList } from '../../store/actions/weatherListActions';
 
-import { IWeather, ICity } from '../../utils/types';
+import { IWeather, ICity, IState } from '../../utils/types';
 import Spinner from '../Spinner/indexs';
 import WeatherItem from '../WeatherItem';
 import { WeatherServiceContex } from '../WeatherServiceContext';
@@ -13,8 +13,6 @@ toast.configure({
   draggable: false
 });
 export interface WeatherListProps {
-  currentCity: ICity;
-  isLoading: boolean;
   weatherItemsList: Array<IWeather>;
   updateWeatherList: IActionUpdateWeatherList;
   fetchWeatherList: IActionFetchWeatherList;
@@ -23,8 +21,6 @@ export interface WeatherListProps {
   temperatureType: string;
 }
 const WeatherList: React.FC<WeatherListProps> = ({
-  currentCity,
-  isLoading,
   temperatureType,
   weatherItemsList,
   updateWeatherList,
@@ -32,7 +28,14 @@ const WeatherList: React.FC<WeatherListProps> = ({
   fetchWeatherList,
   weatherItemsError,
 }) => {
+
+  const currentCity: ICity = useSelector((state: IState) => state.currentCity);
+  const { isLoading } = useSelector((state: IState) => state.weatherList);
+
+  const dispatch = useDispatch();
+
   const { getWeatherFevDays } = useContext(WeatherServiceContex);
+
   React.useEffect(() => {
     const { id } = currentCity;
     if (id) {
@@ -61,8 +64,6 @@ const WeatherList: React.FC<WeatherListProps> = ({
 };
 const mapStateToProps = (state: any) => {
   return {
-    currentCity: state.currentCity,
-    isLoading: state.weatherList.isLoading,
     weatherItemsList: state.weatherList.items,
     weatherItemsError: state.weatherList.error,
     temperatureType: state.temperatureType,

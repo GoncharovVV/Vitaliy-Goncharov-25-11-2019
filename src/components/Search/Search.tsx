@@ -1,9 +1,8 @@
 import React, { useContext } from 'react';
 import { AsyncTypeahead } from 'react-bootstrap-typeahead';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { updateCity } from '../../store/actions/cityActions';
-import { IUpdateCity } from '../../store/actions/types';
 import { ICity, IState } from '../../utils/types';
 import { WeatherServiceContex } from '../WeatherServiceContext';
 import './Search.scss';
@@ -13,12 +12,14 @@ toast.configure({
 });
 export interface SearchProps {
   getCities?: any;
-  currentCity: ICity;
-  updateCity: IUpdateCity;
 }
 
-const Search: React.FC<SearchProps> = ({ currentCity, updateCity }) => {
+const Search: React.FC<SearchProps> = () => {
+  const currentCity: ICity = useSelector((state: IState) => state.currentCity);
+  const dispatch = useDispatch();
+
   const { getCities } = useContext(WeatherServiceContex);
+
   const [isLoading, setisLoading] = React.useState<boolean>(false);
   const [options, setOptions] = React.useState<Array<ICity>>([currentCity]);
   const multiple = React.useState<boolean>(false);
@@ -26,7 +27,7 @@ const Search: React.FC<SearchProps> = ({ currentCity, updateCity }) => {
 
   const onChange = (selected: Array<ICity>) => {
     if (selected.length > 0) {
-      updateCity(selected[0]);
+      dispatch(updateCity(selected[0]));
     }
   };
 
@@ -66,12 +67,4 @@ Search.defaultProps = {
   getCities: () => {}
 };
 
-const mapStateToProps = (state: IState) => {
-  return {
-    currentCity: state.currentCity
-  };
-};
-const mapDispatchToProps = {
-  updateCity
-};
-export default connect(mapStateToProps, mapDispatchToProps)(Search);
+export default Search;

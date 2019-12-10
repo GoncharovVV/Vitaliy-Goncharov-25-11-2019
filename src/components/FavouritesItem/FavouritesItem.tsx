@@ -1,56 +1,22 @@
-import React, { useContext, useState } from 'react';
-import { connect } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { updateCity } from '../../store/actions/cityActions';
-import { IUpdateCity } from '../../store/actions/types';
-import { temperatureTypeF } from '../../utils/constants';
-import { ICity, IWeather, IState } from '../../utils/types';
+import React from 'react';
 import Spinner from '../Spinner/indexs';
-import { WeatherServiceContex } from '../WeatherServiceContext';
-export interface FavouritesItemProps extends ICity {
-  updateCity: IUpdateCity;
-  temperatureType: string;
+export interface FavouritesItemProps {
+  localizedName: string;
+  isLoading: boolean;
+  imgUrl: string;
+  type: string;
+  temperature: string;
+  onClick: () => any;
 }
-toast.configure({
-  autoClose: 2000,
-  draggable: false
-});
-const FavouritesItem: React.FC<FavouritesItemProps> = ({
-  id,
+
+const FavouritesItem: React.SFC<FavouritesItemProps> = ({
   localizedName,
-  country,
-  administrative,
-  updateCity,
-  temperatureType
+  isLoading,
+  type,
+  imgUrl,
+  temperature,
+  onClick
 }) => {
-  const history = useHistory();
-  const { getWeather, getWeatherIcon } = useContext(WeatherServiceContex);
-  const [imgUrl, setImgUrl] = useState<string>('');
-  const [type, setType] = useState<string>('-');
-  const [temperatureImp, setTemperatureImp] = useState<string>('-');
-  const [temperatureMetr, setTemperatureMetr] = useState<string>('-');
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  React.useEffect(() => {
-    if (id) {
-      getWeather(id)
-        .then(({ icon, temperatureImp, temperatureMetr, type }: IWeather) => {
-          setIsLoading(false);
-          const imgUrl = getWeatherIcon(icon);
-          setImgUrl(imgUrl);
-          setType(type);
-          setTemperatureImp(temperatureImp);
-          setTemperatureMetr(temperatureMetr);
-        })
-        .catch((err: any) => {
-          toast.warn(`Something is wrong ${err}`);
-        });
-    }
-  }, [id, getWeather, getWeatherIcon]);
-  const onClick = () => {
-    updateCity({ id, localizedName, country, administrative });
-    history.push('/');
-  };
   return (
     <li className="card-item">
       <button className="card-item__content" onClick={onClick}>
@@ -59,28 +25,14 @@ const FavouritesItem: React.FC<FavouritesItemProps> = ({
           <Spinner />
         ) : (
           <>
-            <img src={imgUrl} className="card-item__image" alt="type" />
+            <img src={imgUrl} className="card-item__image" alt={type} />
             <h3 className="card-item__title">{type}</h3>
-            <div className="card-item__temp">
-              {temperatureType === temperatureTypeF ? (
-                <> {temperatureImp} </>
-              ) : (
-                <> {temperatureMetr} </>
-              )}
-            </div>
+            <div className="card-item__temp">{temperature}</div>
           </>
         )}
       </button>
     </li>
   );
 };
-const mapStateToProps = (state: IState) => {
-  return {
-    currentCity: state.currentCity,
-    temperatureType: state.temperatureType
-  };
-};
-const mapDispatchToProps = {
-  updateCity
-};
-export default connect(mapStateToProps, mapDispatchToProps)(FavouritesItem);
+
+export default FavouritesItem;
