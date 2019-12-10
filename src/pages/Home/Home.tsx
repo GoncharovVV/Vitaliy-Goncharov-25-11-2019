@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import CurrentWeather from '../../components/CurrentWeather';
+import CurrentWeather from '../../components/CurrentWeatherContainer';
 import Search from '../../components/Search';
 import ToggleFavourites from '../../components/ToggleFavourites';
 import ToggleTemperature from '../../components/ToggleTemperature';

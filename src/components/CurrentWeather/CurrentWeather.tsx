@@ -1,66 +1,22 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { connect } from 'react-redux';
-import { toast } from 'react-toastify';
-import { temperatureTypeF } from '../../utils/constants';
-import { IWeather, IState } from '../../utils/types';
-import Spinner from '../Spinner/indexs';
-import { WeatherServiceContex } from '../WeatherServiceContext';
+import React from 'react';
 import './CurrentWeather.scss';
 
 export interface CurrentWeatherProps {
-  cityId: string;
-  temperatureType: string;
+  imgUrl: string,
+  type: string,
+  temperature: string
 }
 
-const CurrentWeather: React.FC<CurrentWeatherProps> = ({ cityId, temperatureType }) => {
-  const { getWeather, getWeatherIcon } = useContext(WeatherServiceContex);
-  const [imgUrl, setImgUrl] = useState<string>('');
-  const [type, setType] = useState<string>('-');
-  const [temperatureImp, setTemperatureImp] = useState<string>('-');
-  const [temperatureMetr, setTemperatureMetr] = useState<string>('-');
-  const [loading, setLoading] = useState<boolean>(true);
-  useEffect(() => {
-    if (cityId) {
-      setLoading(true);
-      getWeather(cityId)
-        .then(({ icon, temperatureImp, temperatureMetr, type }: IWeather) => {
-          const imgUrl = getWeatherIcon(icon);
-          setImgUrl(imgUrl);
-          setType(type);
-          setTemperatureImp(temperatureImp);
-          setTemperatureMetr(temperatureMetr);
-          setLoading(false);
-        })
-        .catch((err: any) => {
-          toast.warn(`Something is wrong ${err}`);
-        });
-    }
-  }, [cityId, getWeather, getWeatherIcon]);
+const CurrentWeather: React.SFC<CurrentWeatherProps> = ({ imgUrl, type, temperature}) => {
   return (
-    <div className="current-weather">
-      {loading ? (
-        <Spinner />
-      ) : (
-        <>
-          <img className="card-item__image" src={imgUrl} alt={type} />
-          <p className="main__type">{type}</p>
-          <p className="main__temp">
-            {temperatureType === temperatureTypeF ? (
-              <> {temperatureImp} </>
-            ) : (
-              <> {temperatureMetr} </>
-            )}
-          </p>
-        </>
-      )}
-    </div>
-  ); 
-};
-const mapStateToProps = (state: IState) => {
-  return {
-    cityId: state.currentCity.id,
-    temperatureType: state.temperatureType
-  };
+    <>
+      <img className="card-item__image" src={imgUrl} alt={type} />
+      <p className="main__type">{type}</p>
+      <p className="main__temp">
+        {temperature}
+      </p>
+    </>
+  );
 };
 
-export default connect(mapStateToProps)(CurrentWeather);
+export default CurrentWeather;
