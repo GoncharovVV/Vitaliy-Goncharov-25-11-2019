@@ -1,16 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import {
   fetchWeatherList,
-  onErrorWeatherList,
-  updateWeatherList
 } from '../../store/actions/weatherListActions';
 
-import { IWeather, ICity, IState } from '../../utils/types';
+import { ICity, IState } from '../../utils/types';
 import Spinner from '../Spinner/indexs';
 import WeatherItem from '../WeatherItem';
-import { WeatherServiceContex } from '../WeatherServiceContext';
 toast.configure({
   autoClose: 2000,
   draggable: false
@@ -26,22 +23,12 @@ const WeatherList: React.FC<WeatherListProps> = () => {
 
   const dispatch = useDispatch();
 
-  const { getWeatherFevDays } = useContext(WeatherServiceContex);
-
   React.useEffect(() => {
     const { id } = currentCity;
     if (id) {
-      dispatch(fetchWeatherList());
-      getWeatherFevDays(id)
-        .then((weatherList: Array<IWeather>) => {
-          dispatch(updateWeatherList(weatherList));
-        })
-        .catch((err: any) => {
-          toast.warn(`Something is wrong ${err}`);
-          dispatch(onErrorWeatherList());
-        });
+      dispatch(fetchWeatherList(id));
     }
-  }, [currentCity, getWeatherFevDays, dispatch]);
+  }, [currentCity, dispatch]);
 
   if (isLoading) return <Spinner />;
 

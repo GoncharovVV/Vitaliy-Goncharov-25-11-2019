@@ -7,9 +7,10 @@ export const updateWeatherList:IActionUpdateWeatherList = (weatherList) => {
     payload: weatherList
   }
 };
-export const fetchWeatherList:IActionFetchWeatherList = () => {
+export const fetchWeatherList:IActionFetchWeatherList = (id) => {
   return {
     type: FETCH_WEATHER_LIST_REQUEST,
+    payload: id
   }
 };
 export const onErrorWeatherList:IActionOnErrorWeatherList = () => {

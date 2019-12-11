@@ -1,6 +1,6 @@
 import { format } from 'date-fns';
 import { temperatureTypeF, temperatureTypeС } from './constants';
-import { ICity } from './types';
+import { ICity, IWeather } from './types';
 
 export const transformTemp = (tempVal: number, tempUtil: string): string => {
   switch (tempUtil) {
@@ -31,5 +31,20 @@ export const transformCities = (citiesArr: any): Array<ICity> => {
     localizedName: LocalizedName,
     country: Country.LocalizedName,
     administrative: AdministrativeArea.LocalizedName
+  }));
+};
+
+export const transformWeatherFevDays = (weatherArr: Array<any>): Array<IWeather> => {
+  console.log(weatherArr);
+  return weatherArr.map((item, idx: number) => ({
+    id: `lw${idx}`,
+    date: item.Date,
+    temperatureImp: `${item.Temperature.Minimum.Value} ${item.Temperature.Minimum.Unit}`,
+    temperatureMetr: `${transformTemp(
+      item.Temperature.Minimum.Value,
+      item.Temperature.Minimum.Unit
+    )} C`,
+    type: item.Day.IconPhrase,
+    icon: item.Day.Icon
   }));
 };

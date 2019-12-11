@@ -56,7 +56,7 @@ export interface IActionUpdateWeatherList {
   (weatherList:Array<IWeather>):IUpdateWeatherList
 }
 export interface IActionFetchWeatherList {
-  ():IFetchWeatherList
+  (id: string):IFetchWeatherList
 }
 export interface IActionOnErrorWeatherList {
   ():IErrorWeatherList
