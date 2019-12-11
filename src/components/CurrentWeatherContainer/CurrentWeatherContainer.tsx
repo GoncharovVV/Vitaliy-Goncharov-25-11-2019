@@ -6,12 +6,13 @@ import { IState, IWeather } from '../../utils/types';
 import CurrentWeather from '../CurrentWeather';
 import Spinner from '../Spinner/indexs';
 import { WeatherServiceContex } from '../WeatherServiceContext';
+import { getWeatherIcon } from '../../utils/helper';
 import './CurrentWeatherContainer.scss';
 
 export interface CurrentWeatherContainerProps {}
 
 const CurrentWeatherContainer: React.FC<CurrentWeatherContainerProps> = () => {
-  const { getWeather, getWeatherIcon } = useContext(WeatherServiceContex);
+  const { getWeather } = useContext(WeatherServiceContex);
   const { id: cityId } = useSelector((state: IState) => state.currentCity);
   const temperatureType = useSelector((state: IState) => state.temperatureType);
 
@@ -37,7 +38,7 @@ const CurrentWeatherContainer: React.FC<CurrentWeatherContainerProps> = () => {
           toast.warn(`Something is wrong ${err}`);
         });
     }
-  }, [cityId, getWeather, getWeatherIcon]);
+  }, [cityId, getWeather]);
 
   return (
     <div className="current-weather">

@@ -7,6 +7,7 @@ import { temperatureTypeF } from '../../utils/constants';
 import { ICity, IState, IWeather } from '../../utils/types';
 import FavouritesItem from '../FavouritesItem';
 import { WeatherServiceContex } from '../WeatherServiceContext';
+import { getWeatherIcon } from '../../utils/helper';
 export interface FavouritesItemContainerProps {
   city: ICity;
 }
@@ -20,7 +21,7 @@ const FavouritesItemContainer: React.FC<FavouritesItemContainerProps> = ({ city 
 
   const history = useHistory();
 
-  const { getWeather, getWeatherIcon } = useContext(WeatherServiceContex);
+  const { getWeather } = useContext(WeatherServiceContex);
 
   const [imgUrl, setImgUrl] = useState<string>('');
   const [type, setType] = useState<string>('-');
@@ -43,7 +44,7 @@ const FavouritesItemContainer: React.FC<FavouritesItemContainerProps> = ({ city 
           toast.warn(`Something is wrong ${err}`);
         });
     }
-  }, [city.id, getWeather, getWeatherIcon]);
+  }, [city.id, getWeather]);
 
   const onClick = () => {
     dispatch(updateCity(city));

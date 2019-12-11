@@ -1,7 +1,6 @@
-import React, { useContext } from 'react';
-import { formatDate } from '../../utils/helper';
+import React from 'react';
+import { formatDate, getWeatherIcon } from '../../utils/helper';
 import { IWeather } from '../../utils/types';
-import { WeatherServiceContex } from '../WeatherServiceContext';
 import { temperatureTypeF } from '../../utils/constants';
 
 export interface WeatherItemProps extends IWeather {
@@ -16,7 +15,6 @@ const WeatherItem: React.FC<WeatherItemProps> = ({
   icon,
   temperatureType
 }) => {
-  const { getWeatherIcon } = useContext(WeatherServiceContex);
   return (
     <li className="card-item">
       <div className="card-item__content">

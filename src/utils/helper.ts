@@ -48,3 +48,12 @@ export const transformWeatherFevDays = (weatherArr: Array<any>): Array<IWeather>
     icon: item.Day.Icon
   }));
 };
+
+export const getWeatherIcon = (id: number): string => {
+  const imgId = transformImgId(id);
+  return `https://developer.accuweather.com/sites/default/files/${imgId}-s.png`;
+};
+
+export const transformImgId = (id: number): number | string => {
+  return id.toString().length > 1 ? id : `0${id}`;
+};
