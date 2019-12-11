@@ -12,7 +12,7 @@ const toggleFavList = (items: Array<ICity>, city: ICity): Array<ICity> => {
   if (city) {
     const idx = findCityInFav(city.id, items);
     if (idx > -1) {
-      return [...items.slice(0, idx), ...items.slice(idx + 1)];
+      return items.filter(item => item.id !== city.id);
     } else {
       return [...items, city];
     };
