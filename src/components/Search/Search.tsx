@@ -1,29 +1,23 @@
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
 import { AsyncTypeahead } from 'react-bootstrap-typeahead';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
+import { fetchCitiesList } from '../../store/actions/citiesListActions';
 import { updateCity } from '../../store/actions/cityActions';
 import { ICity, IState } from '../../utils/types';
-import { WeatherServiceContex } from '../WeatherServiceContext';
 import './Search.scss';
 toast.configure({
   autoClose: 2000,
   draggable: false
 });
-export interface SearchProps {
-  getCities?: any;
-}
+export interface SearchProps {}
 
 const Search: React.FC<SearchProps> = () => {
-  const currentCity: ICity = useSelector((state: IState) => state.currentCity);
+  const { items, isLoading } = useSelector((state: IState) => state.citiesList);
   const dispatch = useDispatch();
 
-  const { getCities } = useContext(WeatherServiceContex);
-
-  const [isLoading, setisLoading] = React.useState<boolean>(false);
-  const [options, setOptions] = React.useState<Array<ICity>>([currentCity]);
-  const multiple = React.useState<boolean>(false);
-  const allowNew = React.useState<boolean>(false);
+  const multiple = useState<boolean>(false);
+  const allowNew = useState<boolean>(false);
 
   const onChange = (selected: Array<ICity>) => {
     if (selected.length > 0) {
@@ -32,17 +26,7 @@ const Search: React.FC<SearchProps> = () => {
   };
 
   const onSearch = (query: string) => {
-    setisLoading(true);
-    getCities(query)
-      .then((res: Array<ICity>) => {
-        setisLoading(false);
-        setOptions(() => {
-          return res;
-        });
-      })
-      .catch((err: any) => {
-        toast.warn(`Something is wrong ${err}`);
-      });
+    dispatch(fetchCitiesList(query));
   };
 
   const getLabelKey = (option: ICity) =>
@@ -58,13 +42,8 @@ const Search: React.FC<SearchProps> = () => {
       onChange={onChange}
       onSearch={onSearch}
       labelKey={getLabelKey}
-      options={options}
+      options={items}
     />
   );
 };
-
-Search.defaultProps = {
-  getCities: () => {}
-};
-
 export default Search;

@@ -30,9 +30,15 @@ export interface IWeatherList {
   isLoading: boolean,
   items: Array<IWeather>
 };
+export interface ICitiesList {
+  error: boolean,
+  isLoading: boolean,
+  items: Array<ICity>
+};
 
 export interface IState extends IFavList {
   currentCity: ICity,
   temperatureType: string,
-  weatherList: IWeatherList
+  weatherList: IWeatherList,
+  citiesList: ICitiesList
 };

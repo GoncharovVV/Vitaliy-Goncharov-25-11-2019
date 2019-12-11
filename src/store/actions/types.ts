@@ -19,12 +19,23 @@ export interface IUpdateWeatherList {
   type: string;
   payload: Array<IWeather>;
 }
+export interface IUpdateCitiesList {
+  type: string;
+  payload: Array<ICity>;
+}
 
 export interface IFetchWeatherList {
   type: string;
 }
+export interface IFetchCitiesList {
+  type: string;
+}
 
 export interface IErrorWeatherList {
+  type: string;
+  payload: [];
+}
+export interface IErrorCitiesList {
   type: string;
   payload: [];
 }
@@ -49,4 +60,13 @@ export interface IActionFetchWeatherList {
 }
 export interface IActionOnErrorWeatherList {
   ():IErrorWeatherList
+}
+export interface IActionUpdateCitiesList {
+  (CitiesList:Array<ICity>):IUpdateCitiesList
+}
+export interface IActionFetchCitiesList {
+  (input: string):IFetchCitiesList
+}
+export interface IActionOnErrorCitiesList {
+  ():IErrorCitiesList
 }
