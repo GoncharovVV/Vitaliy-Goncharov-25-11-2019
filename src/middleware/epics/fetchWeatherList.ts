@@ -1,7 +1,7 @@
 import { ofType } from 'redux-observable';
 import { concat, of } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
-import { catchError, debounceTime, filter, map, mergeMap, switchMap } from 'rxjs/operators';
+import { catchError, filter, map, mergeMap, switchMap } from 'rxjs/operators';
 import { FETCH_WEATHER_LIST_REQUEST } from '../../utils/actionConstants';
 import { apiUrl } from '../../utils/constants';
 import { transformWeatherFevDays } from '../../utils/helper';
@@ -12,7 +12,6 @@ const fetchUrl = `${apiUrl}forecasts/v1/daily/5day/`;
 const fetchWeatherListEpic = (action$: any) => {
   return action$.pipe(
     ofType(FETCH_WEATHER_LIST_REQUEST),
-    debounceTime(500),
     filter(({ payload }) => payload.trim() !== ''),
     switchMap(({ payload }) => {
       return concat(

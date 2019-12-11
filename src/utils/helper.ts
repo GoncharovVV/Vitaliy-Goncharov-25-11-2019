@@ -35,7 +35,6 @@ export const transformCities = (citiesArr: any): Array<ICity> => {
 };
 
 export const transformWeatherFevDays = (weatherArr: Array<any>): Array<IWeather> => {
-  console.log(weatherArr);
   return weatherArr.map((item, idx: number) => ({
     id: `lw${idx}`,
     date: item.Date,

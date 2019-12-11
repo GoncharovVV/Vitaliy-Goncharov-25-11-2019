@@ -1,12 +1,10 @@
 import { IWeather } from '../utils/types';
-
+import { apiUrl } from '../utils/constants';
 export default class WeatherService {
-  _urlApiBase = 'https://dataservice.accuweather.com/';
   _apiKey = process.env['REACT_APP_API_KEY'];
 
   getResource = async (url: string): Promise<any> => {
-    const res = await fetch(`${this._urlApiBase}${url}`);
-
+    const res = await fetch(`${apiUrl}${url}`);
     if (!res.ok) {
       throw new Error(`Could not get data, received ${res.status}`);
     }
@@ -28,6 +26,4 @@ export default class WeatherService {
       temperatureImp: `${Imperial.Value} ${Imperial.Unit}`
     };
   };
-
-
 }
