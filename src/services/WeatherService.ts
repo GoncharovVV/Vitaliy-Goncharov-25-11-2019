@@ -1,6 +1,4 @@
-import { ICity, IWeather } from '../utils/types';
-
-import { ICitiesResponce } from './types';
+import { IWeather } from '../utils/types';
 
 import { transformTemp } from '../utils/helper';
 
@@ -22,13 +20,6 @@ export default class WeatherService {
     return this._transformWeatherSingle(res);
   };
 
-  getCities = async (query: string): Promise<Array<ICity>> => {
-    const res = await this.getResource(
-      `locations/v1/cities/autocomplete?apikey=${this._apiKey}&q=${query}`
-    );
-    return this._transformCities(res);
-  };
-
   getWeatherFevDays = async (cityKey: number): Promise<Array<IWeather>> => {
     const res = await this.getResource(`forecasts/v1/daily/5day/${cityKey}?apikey=${this._apiKey}`);
     return this._transformWeatherFevDays(res.DailyForecasts);
@@ -41,15 +32,6 @@ export default class WeatherService {
 
   _transformImgId = (id: number): number | string => {
     return id.toString().length > 1 ? id : `0${id}`;
-  };
-
-  _transformCities = (citiesArr: Array<ICitiesResponce>): Array<ICity> => {
-    return citiesArr.map(({ Key, LocalizedName, Country, AdministrativeArea }) => ({
-      id: Key,
-      localizedName: LocalizedName,
-      country: Country.LocalizedName,
-      administrative: AdministrativeArea.LocalizedName
-    }));
   };
 
   _transformWeatherSingle = (weatherArr: Array<any>): IWeather => {
