@@ -24,3 +24,12 @@ export const findCityInFav = (id: string, arr: Array<ICity>): number => {
   const idx = arr.findIndex((item: any) => item.id === id);
   return idx;
 };
+
+export const transformCities = (citiesArr: any): Array<ICity> => {
+  return citiesArr.map(({ Key, LocalizedName, Country, AdministrativeArea }:any) => ({
+    id: Key,
+    localizedName: LocalizedName,
+    country: Country.LocalizedName,
+    administrative: AdministrativeArea.LocalizedName
+  }));
+};

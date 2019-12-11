@@ -1,14 +1,25 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import reducer from './reducers';
+import epicMiddleware, { rootEpic } from '../middleware';
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['weatherList']
+  blacklist: ['weatherList', 'citiesList']
 };
+
+declare global {
+  interface Window {
+    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+  }
+}
+
 const persistedReducer = persistReducer(persistConfig, reducer);
-const store = createStore(persistedReducer);
-let persistor = persistStore(store);
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(persistedReducer, composeEnhancers(applyMiddleware(epicMiddleware)));
+epicMiddleware.run(rootEpic);
+
+const persistor = persistStore(store);
 
 export { store, persistor };
