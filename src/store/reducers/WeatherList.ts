@@ -3,7 +3,7 @@ import { IState, IWeatherList, IWeather } from "../../utils/types";
 
 export interface IAction {
   type: string,
-  payload: IWeather
+  payload: Array<IWeather>
 };
 
 const updateWetherList = (state: IState, action: IAction): IWeatherList => {

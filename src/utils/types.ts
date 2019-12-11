@@ -28,7 +28,7 @@ export interface IFavList {
 export interface IWeatherList {
   error: boolean,
   isLoading: boolean,
-  items: [] | IWeather
+  items: Array<IWeather>
 };
 
 export interface IState extends IFavList {
