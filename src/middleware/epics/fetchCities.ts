@@ -17,12 +17,12 @@ const fetchCitiesEpic = (action$: any) => {
     switchMap(({ payload }): any => {
       return concat(
         ajax.getJSON(`${fetchUrl}${payload}`).pipe(
-          mergeMap((val) => {
+          mergeMap((val:any) => {
             const newArr = transformCities(val);
             return of(newArr);
           }),
           map((x: Array<ICity>) => updateCitiesList(x)),
-          catchError((error) => {
+          catchError(() => {
             return of(onErrorCitiesList());
           })
         )

@@ -13,7 +13,7 @@ export const transformTemp = (tempVal: number, tempUtil: string): string => {
   }
 };
 
-export const formatDate = (dateVal: string | undefined) => {
+export const formatDate = (dateVal: string): string => {
   if (dateVal) {
     return format(new Date(dateVal), 'EEEE');
   }
@@ -25,7 +25,7 @@ export const findCityInFav = (id: string, arr: Array<ICity>): number => {
   return idx;
 };
 
-export const transformCities = (citiesArr: any): Array<ICity> => {
+export const transformCities = (citiesArr: Array<Object>): Array<ICity> => {
   return citiesArr.map(({ Key, LocalizedName, Country, AdministrativeArea }:any) => ({
     id: Key,
     localizedName: LocalizedName,

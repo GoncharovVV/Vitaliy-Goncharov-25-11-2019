@@ -6,7 +6,12 @@
       "dom.iterable",
       "esnext"
     ],
+    "sourceMap": true,
+    "removeComments": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "allowJs": true,
+    "noEmitOnError": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
