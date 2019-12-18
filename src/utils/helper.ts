@@ -13,7 +13,7 @@ export const transformTemp = (tempVal: number, tempUtil: string): string => {
   }
 };
 
-export const formatDate = (dateVal: string): string => {
+export const formatDate = (dateVal: string | undefined): string => {
   if (dateVal) {
     return format(new Date(dateVal), 'EEEE');
   }

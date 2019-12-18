@@ -1,8 +1,8 @@
 import { ofType } from 'redux-observable';
 import { concat, of } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
-import { catchError, filter, map, mergeMap, switchMap } from 'rxjs/operators';
-import { FETCH_WEATHER_LIST_REQUEST } from '../../utils/actionConstants';
+import { catchError, filter, map, mergeMap, switchMap, takeUntil } from 'rxjs/operators';
+import { FETCH_WEATHER_LIST_REQUEST, CANCEL_FETCH_WEATHER_LIST } from '../../utils/actionConstants';
 import { apiUrl } from '../../utils/constants';
 import { transformWeatherFevDays } from '../../utils/helper';
 import { IWeather } from '../../utils/types';
@@ -16,12 +16,13 @@ const fetchWeatherListEpic = (action$: any) => {
     switchMap(({ payload }) => {
       return concat(
         ajax.getJSON(`${fetchUrl}${payload}?apikey=${process.env['REACT_APP_API_KEY']}`).pipe(
+          takeUntil(action$.pipe(ofType(CANCEL_FETCH_WEATHER_LIST))),
           mergeMap((val: any) => {
             const newArr = transformWeatherFevDays(val.DailyForecasts);
             return of(newArr);
           }),
           map((x: Array<IWeather>) => updateWeatherList(x)),
-          catchError((error) => {
+          catchError(() => {
             return of(onErrorWeatherList());
           })
         )

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AsyncTypeahead } from 'react-bootstrap-typeahead';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { fetchCitiesList } from '../../store/actions/citiesListActions';
+import { fetchCitiesList, cancelFetchCitiesList } from '../../store/actions/citiesListActions';
 import { updateCity } from '../../store/actions/cityActions';
 import { ICity, IState } from '../../utils/types';
 import './Search.scss';
@@ -28,22 +28,29 @@ const Search: React.FC<SearchProps> = () => {
   const onSearch = (query: string) => {
     dispatch(fetchCitiesList(query));
   };
-
+  useEffect(() => {
+    return () => {
+      dispatch(cancelFetchCitiesList());
+    }
+  }, [dispatch]);
   const getLabelKey = (option: ICity) =>
     `${option.localizedName} (${option.country} / ${option.administrative})`;
 
   return (
-    <AsyncTypeahead
-      id="typehad-id"
-      isLoading={isLoading}
-      allowNew={allowNew[0]}
-      multiple={multiple[0]}
-      placeholder="Search for City weather"
-      onChange={onChange}
-      onSearch={onSearch}
-      labelKey={getLabelKey}
-      options={items}
-    />
+    <>
+      <AsyncTypeahead
+        id="typehad-id"
+        isLoading={isLoading}
+        allowNew={allowNew[0]}
+        multiple={multiple[0]}
+        placeholder="Search for City weather"
+        onChange={onChange}
+        onSearch={onSearch}
+        labelKey={getLabelKey}
+        options={items}
+      />
+      
+    </>
   );
 };
 export default Search;

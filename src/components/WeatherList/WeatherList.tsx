@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import {
-  fetchWeatherList,
+  fetchWeatherList, onCancelFetchWeatherList,
 } from '../../store/actions/weatherListActions';
 
 import { ICity, IState } from '../../utils/types';
@@ -23,11 +23,12 @@ const WeatherList: React.FC<WeatherListProps> = () => {
 
   const dispatch = useDispatch();
 
-  React.useEffect(() => {
+  useEffect(():any => {
     const { id } = currentCity;
     if (id) {
       dispatch(fetchWeatherList(id));
     }
+    return () => dispatch(onCancelFetchWeatherList());
   }, [currentCity, dispatch]);
 
   if (isLoading) return <Spinner />;
