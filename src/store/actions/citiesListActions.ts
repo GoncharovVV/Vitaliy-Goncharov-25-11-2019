@@ -25,3 +25,4 @@ export const cancelFetchCitiesList = () => {
     payload: []
   }
 };
+
